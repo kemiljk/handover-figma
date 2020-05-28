@@ -86,7 +86,7 @@
   <div class="converter">
     <h4>PX</h4>
     <div>
-      <input class="input" id="px" value="">
+      <input class="input" id="px" value="16">
     </div>
   </div>
   <div class="result">
@@ -102,7 +102,7 @@
 
 onmessage = (event) => {
 document.getElementById('px').value = event.data.pluginMessage.fontSize;
-console.log(event.data.pluginMessage);
+/* console.log(event.data.pluginMessage); */
 }
 
 document.getElementById('convert').onclick = () => {
@@ -111,7 +111,7 @@ var result = pxToEms(input.value);
 document.getElementById('result').innerHTML = result().toFixed(2);
 
 input.addEventListener("keyup", function (event) {
-  // Number 13 is the "Enter" key on the keyboard
+  // 13 === Enter/Return
   if (event.keyCode === 13) {
     // Cancel the default action, if needed
     event.preventDefault();
