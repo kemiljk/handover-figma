@@ -10,6 +10,18 @@
     color: #1A202C
   }
 
+
+  h2 {
+    margin: 0;
+  }
+
+  h3 {
+    margin-left: 0;
+    margin-top: 1.5em;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+
   h4 {
     margin: auto;
     margin-left: 0;
@@ -18,27 +30,48 @@
     color: #009688
   }
 
-  h5 {
-    margin: auto;
-  }
 
   p {
-    margin-bottom: 2.5em;
+    margin-bottom: 0.5em;
     font-size: small;
     color: #4A5568;
   }
 
   #em {
     color: #ff9800;
+    padding-left: 1em;
+  }
+
+  #container {
+    display: grid;
+    position: absolute;
+  }
+
+  #ratio {
+
+  }
+
+  .container {
+    display: flex;
+    margin-top: 1em;
+  }
+
+  .changeValue {
+    border: 3px solid #009688;
+    border-radius: 4px;
+    height: 2.3em;
+    width: 4.5em;
+    text-align: center;
+    font-size: small;
   }
 
   .input {
     border: 3px solid #009688;
     border-radius: 4px;
-    height: 2.5em;
+    height: 2em;
     width: 4.5em;
     text-align: center;
-    font-size: large;
+    font-size: small;
   }
 
   .result {
@@ -53,56 +86,114 @@
 
   .converter {
     display: flex;
+    margin: auto;
+    margin-left: 0;
+    margin-top: .75em;
+    margin-bottom: .5em;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .baseValue {
+    display: flex;
     float: left;
+    margin-top: .5em;
   }
 
   .value {
     margin: auto;
     color: #009688;
     font-weight: 700;
-    font-size: xx-large;
+    font-size: x-large;
   }
 
   .btn {
-    background: #009688;
     border-radius: 4px;
     color: white;
     text-transform: uppercase;
     font-weight: 600;
-    border: 3px solid #009688;
-    padding: 0.75em 1.25em;
-    margin-left: 1em;
+    padding: 0.5em .75em;
     cursor: pointer;
   }
 
-  .bottom {
+  .text {
+    outline: none;
+    border: none;
+  }
+
+  .orange--text {
+    color: #ff9800;
+  }
+
+  .orange--outline {
+    border: 3px solid #ff9800;
+  }
+  
+  .black--text {
+    color: #1A202C;
+  }
+
+  .black--outline {
+    border: 3px solid #1A202C;
+  }
+
+  .green {
+    background: #009688;
+    border: 3px solid #009688;
+  }
+
+  .float-right {
     display: flex;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    justify-content: space-between;
+    float: right;
     margin: auto;
-    padding: 1em;
+  }
+
+  .ml-1 {
+    margin-left: 1em;
+  }
+
+  .mr-2 {
+    margin-right: 2em;
+  }
+
+  .mb-1 {
+    margin-bottom: 1em;
   }
 
 </style>
 
-<div class="container">
-  <h2 class="">Convert PX to EMs</h2>
-  <p>Enter a <em>pixel</em> value in the left input and click convert to see the relative <em>em</em> value.</p>
-  <div class="converter">
-    <h4>PX</h4>
-    <div>
-      <input class="input" id="px" value="16">
+<div id="container">
+  <h2>Convert PX to EMs</h2>
+  <!-- <p>Enter a <em>pixel</em> value in the left input and click convert to see the relative <em>em</em> value.</p> -->
+  <p>The base <em>pixel</em> value is 16px. <br />Change the base below.</p>
+  <div class="baseValue">
+      <input class="changeValue orange--outline" id="newPx" value="16">
+      <!-- <select name="conversionRatio" id="ratio" class="float-right">
+        <option value="1.067">Minor second</option>
+        <option value="1.125">Major second</option>
+        <option value="1.200">Minor third</option>
+        <option value="1.250" selected>Major third</option>
+        <option value="1.333">Perfect fourth</option>
+        <option value="1.414">Augmented fourth</option>
+        <option value="1.500">Perfect fifth</option>
+        <option value="1.618">Golden ratio</option>
+      </select> -->
+  </div>
+  <h3>Results</h3>
+    <div class="converter">
+      <h4>PX</h4>
+      <div>
+        <input class="input" id="px" value="16">
+      </div>
+    </h5>
+    <div class="result">
+      <h4 id="em">EM</h4>
+      <span id="result" class="value"></span>
     </div>
   </div>
-  <div class="result">
-    <h4 id="em">EM</h4>
-    <span id="result" class="value"></span>
-  </div>
-  <div class="bottom">
-    <button id="convert" class="btn">Convert</button>
-  </div>
+    <div class="bottom">
+      <button id="convert" class="btn green">Convert</button>
+    </div>
 </div>
 
 <script>
@@ -126,7 +217,7 @@ input.addEventListener("keyup", function (event) {
 }
 
 function pxToEms(px) {
-  var baseValue = 16;
+  var baseValue = document.getElementById('newPx').value;
 
   function calculate() {
     return px / baseValue;
