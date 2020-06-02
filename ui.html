@@ -39,12 +39,7 @@
 
   select {
     width: 10em;
-    height: 2.5em;
-    padding: 1em;
-  }
-
-  option {
-    padding: 1em;
+    height: 2.7em;
   }
 
   #em {
@@ -57,9 +52,7 @@
     position: absolute;
   }
 
-  #ratio {
-
-  }
+  
 
   .container {
     display: flex;
@@ -158,6 +151,10 @@
     margin: auto;
   }
 
+  .mr-0 {
+    margin-right: 0;
+  }
+
   .ml-1 {
     margin-left: 1em;
   }
@@ -175,10 +172,10 @@
 <div id="container">
   <h2>Convert PX to EMs</h2>
   <!-- <p>Enter a <em>pixel</em> value in the left input and click convert to see the relative <em>em</em> value.</p> -->
-  <p>The base <em>pixel</em> value is 16px. <br />Change the base below.</p>
+  <p>The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
   <div class="baseValue">
-      <input class="changeValue orange--outline" id="newPx" value="16">
-      <select name="conversionRatio" id="ratio" class="float-right">
+      <input class="changeValue orange--outline mr-0" id="newPx" value="16">
+      <select name="conversionScale" id="scale" class="float-right orange--outline">
         <option value="1.000" selected>Browser default</option>
         <option value="1.067">Minor second</option>
         <option value="1.125">Major second</option>
@@ -187,7 +184,7 @@
         <option value="1.333">Perfect fourth</option>
         <option value="1.414">Augmented fourth</option>
         <option value="1.500">Perfect fifth</option>
-        <option value="1.618">Golden ratio</option>
+        <option value="1.618">Golden scale</option>
       </select>
   </div>
   <h3>Results</h3>
@@ -229,10 +226,10 @@ input.addEventListener("keyup", function (event) {
 
 function pxToEms(px) {
   var baseValue = document.getElementById('newPx').value;
-  var ratio = document.getElementById('ratio').value
+  var scale = document.getElementById('scale').value
 
   function calculate() {
-    return (px / baseValue) * ratio;
+    return (px / baseValue) * scale;
   }
 
   return calculate;
