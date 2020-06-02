@@ -38,7 +38,7 @@
   }
 
   select {
-    width: 10em;
+    width: 15em;
     height: 2.7em;
   }
 
@@ -159,6 +159,10 @@
     margin-left: 1em;
   }
 
+  .mr-1 {
+    margin-right: 1em;
+  }
+  
   .mr-2 {
     margin-right: 2em;
   }
@@ -174,17 +178,17 @@
   <!-- <p>Enter a <em>pixel</em> value in the left input and click convert to see the relative <em>em</em> value.</p> -->
   <p>The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
   <div class="baseValue">
-      <input class="changeValue orange--outline mr-0" id="newPx" value="16">
-      <select name="conversionScale" id="scale" class="float-right orange--outline">
-        <option value="1.000" selected>Browser default</option>
-        <option value="1.067">Minor second</option>
-        <option value="1.125">Major second</option>
-        <option value="1.200">Minor third</option>
-        <option value="1.250">Major third</option>
-        <option value="1.333">Perfect fourth</option>
-        <option value="1.414">Augmented fourth</option>
-        <option value="1.500">Perfect fifth</option>
-        <option value="1.618">Golden scale</option>
+      <input class="changeValue orange--outline mr-1" id="newPx" value="16">
+      <select name="conversionScale" id="scale" class="orange--outline">
+        <option value="1.000" selected>Browser default (1.000)</option>
+        <option value="1.067">Minor second (1.067)</option>
+        <option value="1.125">Major second (1.125)</option>
+        <option value="1.200">Minor third (1.200)</option>
+        <option value="1.250">Major third (1.250)</option>
+        <option value="1.333">Perfect fourth (1.333)</option>
+        <option value="1.414">Augmented fourth (1.414)</option>
+        <option value="1.500">Perfect fifth (1.500)</option>
+        <option value="1.618">Golden scale (1.618)</option>
       </select>
   </div>
   <h3>Results</h3>
