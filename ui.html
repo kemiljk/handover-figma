@@ -37,6 +37,16 @@
     color: #4A5568;
   }
 
+  select {
+    width: 10em;
+    height: 2.5em;
+    padding: 1em;
+  }
+
+  option {
+    padding: 1em;
+  }
+
   #em {
     color: #ff9800;
     padding-left: 1em;
@@ -168,16 +178,17 @@
   <p>The base <em>pixel</em> value is 16px. <br />Change the base below.</p>
   <div class="baseValue">
       <input class="changeValue orange--outline" id="newPx" value="16">
-      <!-- <select name="conversionRatio" id="ratio" class="float-right">
+      <select name="conversionRatio" id="ratio" class="float-right">
+        <option value="1.000" selected>Browser default</option>
         <option value="1.067">Minor second</option>
         <option value="1.125">Major second</option>
         <option value="1.200">Minor third</option>
-        <option value="1.250" selected>Major third</option>
+        <option value="1.250">Major third</option>
         <option value="1.333">Perfect fourth</option>
         <option value="1.414">Augmented fourth</option>
         <option value="1.500">Perfect fifth</option>
         <option value="1.618">Golden ratio</option>
-      </select> -->
+      </select>
   </div>
   <h3>Results</h3>
     <div class="converter">
@@ -218,9 +229,10 @@ input.addEventListener("keyup", function (event) {
 
 function pxToEms(px) {
   var baseValue = document.getElementById('newPx').value;
+  var ratio = document.getElementById('ratio').value
 
   function calculate() {
-    return px / baseValue;
+    return (px / baseValue) * ratio;
   }
 
   return calculate;
