@@ -1,11 +1,10 @@
 <style>
-
   * {
     outline: none;
   }
 
   body {
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 1em;
     color: #1A202C
   }
@@ -13,11 +12,12 @@
 
   h2 {
     margin: 0;
+    font-size: larger;
   }
 
   h3 {
     margin-left: 0;
-    margin-top: 1.5em;
+    margin-top: 1.25em;
     margin-right: auto;
     margin-bottom: 0;
   }
@@ -30,6 +30,9 @@
     color: #009688
   }
 
+  h5 {
+    margin: 0;
+  }
 
   p {
     margin-bottom: 0.5em;
@@ -52,7 +55,7 @@
     position: absolute;
   }
 
-  
+
 
   .container {
     display: flex;
@@ -90,8 +93,8 @@
   .converter {
     display: flex;
     margin: auto;
+    margin-top: 0;
     margin-left: 0;
-    margin-top: .75em;
     margin-bottom: .5em;
     justify-content: space-between;
     align-items: center;
@@ -99,8 +102,16 @@
 
   .baseValue {
     display: flex;
-    float: left;
     margin-top: .5em;
+    margin-bottom: 0;
+  }
+
+  .f-l {
+    float: left;
+  }
+
+  .f-r {
+    float: right;
   }
 
   .value {
@@ -131,7 +142,7 @@
   .orange--outline {
     border: 3px solid #ff9800;
   }
-  
+
   .black--text {
     color: #1A202C;
   }
@@ -162,7 +173,7 @@
   .mr-1 {
     margin-right: 1em;
   }
-  
+
   .mr-2 {
     margin-right: 2em;
   }
@@ -170,14 +181,18 @@
   .mb-1 {
     margin-bottom: 1em;
   }
-
 </style>
 
 <div id="container">
   <h2>Convert PX to EMs</h2>
   <!-- <p>Enter a <em>pixel</em> value in the left input and click convert to see the relative <em>em</em> value.</p> -->
   <p>The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
-  <div class="baseValue">
+  <div>
+    <div class="baseValue f-l mr-2">
+      <h5 class="mr-2">Base px</h5>
+      <h5 class="">Scale</h5>
+    </div>
+    <div class="baseValue f-l">
       <input class="changeValue orange--outline mr-1" id="newPx" value="16">
       <select name="conversionScale" id="scale" class="orange--outline">
         <option value="1.000" selected>Browser default (1.000)</option>
@@ -190,54 +205,62 @@
         <option value="1.500">Perfect fifth (1.500)</option>
         <option value="1.618">Golden ratio (1.618)</option>
       </select>
+    </div>
   </div>
   <h3>Results</h3>
-    <div class="converter">
-      <h4>PX</h4>
-      <div>
-        <input class="input" id="px" value="16">
-      </div>
+  <div class="converter">
+    <h4>PX</h4>
+    <div>
+      <input class="input" id="px" value="16">
+    </div>
     </h5>
     <div class="result">
       <h4 id="em">EM</h4>
-      <span id="result" class="value"></span>
+      <span id="result" class="value">1.00</span>
     </div>
   </div>
-    <div class="bottom">
-      <button id="convert" class="btn green">Convert</button>
-    </div>
+  <div class="bottom">
+    <button id="convert" class="btn green">Convert</button>
+  </div>
 </div>
 
 <script>
 
-onmessage = (event) => {
-document.getElementById('px').value = event.data.pluginMessage.fontSize;
-/* console.log(event.data.pluginMessage); */
-}
-
-document.getElementById('convert').onclick = () => {
-const input = document.getElementById('px');
-var result = pxToEms(input.value);
-document.getElementById('result').innerHTML = result().toFixed(2);
-
-input.addEventListener("keyup", function (event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    document.getElementById("convert").click();
-  }
-});
-}
-
-function pxToEms(px) {
-  var baseValue = document.getElementById('newPx').value;
-  var scale = document.getElementById('scale').value
-
-  function calculate() {
-    return (px / baseValue) * scale;
+  onmessage = (event) => {
+    document.getElementById('px').value = event.data.pluginMessage.fontSize;
+    /* console.log(event.data.pluginMessage); */
   }
 
-  return calculate;
-}
+  document.getElementById('convert').onclick = () => {
+    const input = document.getElementById('px');
+    var result = pxToEms(input.value);
+    document.getElementById('result').innerHTML = result().toFixed(2);
+
+    input.addEventListener("keyup", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById('convert').click();
+      }
+    });
+    const basePx = document.getElementById('newPx'); 
+    basePx.addEventListener("keyup", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById('convert').click();
+      }
+    });
+  }
+
+  function pxToEms(px) {
+    var baseValue = document.getElementById('newPx').value;
+    var scale = document.getElementById('scale').value
+
+    function calculate() {
+      return (px / baseValue) * scale;
+    }
+
+    return calculate;
+  }
 
 
 </script>
