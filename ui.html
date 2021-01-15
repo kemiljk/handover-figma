@@ -1,259 +1,109 @@
-<style>
-  * {
-    outline: none;
-  }
+<head>
+  <link href="https://www.kejk.tech/tailwind.css" rel="stylesheet">
+</head>
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 1em;
-    color: #1A202C
-  }
-
-
-  h2 {
-    margin: 0;
-    font-size: larger;
-  }
-
-  h3 {
-    margin-left: 0;
-    margin-top: 1.25em;
-    margin-right: auto;
-    margin-bottom: 0;
-  }
-
-  h4 {
-    margin: auto;
-    margin-left: 0;
-    padding-right: 1em;
-    font-weight: 900;
-    color: #009688
-  }
-
-  h5 {
-    margin: 0;
-  }
-
-  p {
-    margin-bottom: 0.5em;
-    font-size: small;
-    color: #4A5568;
-  }
-
-  select {
-    width: 15em;
-    height: 2.7em;
-  }
-
-  #em {
-    color: #ff9800;
-    padding-left: 1em;
-  }
-
-  #container {
-    display: grid;
-    position: absolute;
-  }
-
-
-
-  .container {
-    display: flex;
-    margin-top: 1em;
-  }
-
-  .changeValue {
-    border: 3px solid #009688;
-    border-radius: 4px;
-    height: 2.3em;
-    width: 4.5em;
-    text-align: center;
-    font-size: small;
-  }
-
-  .input {
-    border: 3px solid #009688;
-    border-radius: 4px;
-    height: 2em;
-    width: 4.5em;
-    text-align: center;
-    font-size: small;
-  }
-
-  .result {
-    height: 3em;
-    width: 5em;
-    text-align: center;
-    font-size: medium;
-    display: flex;
-    float: right;
-    margin-right: 3em;
-  }
-
-  .converter {
-    display: flex;
-    margin: auto;
-    margin-top: 0;
-    margin-left: 0;
-    margin-bottom: .5em;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .baseValue {
-    display: flex;
-    margin-top: .5em;
-    margin-bottom: 0;
-  }
-
-  .f-l {
-    float: left;
-  }
-
-  .f-r {
-    float: right;
-  }
-
-  .value {
-    margin: auto;
-    color: #009688;
-    font-weight: 700;
-    font-size: x-large;
-  }
-
-  .btn {
-    border-radius: 4px;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 0.5em .75em;
-    cursor: pointer;
-  }
-
-  .text {
-    outline: none;
-    border: none;
-  }
-
-  .orange--text {
-    color: #ff9800;
-  }
-
-  .orange--outline {
-    border: 3px solid #ff9800;
-  }
-
-  .black--text {
-    color: #1A202C;
-  }
-
-  .black--outline {
-    border: 3px solid #1A202C;
-  }
-
-  .green {
-    background: #009688;
-    border: 3px solid #009688;
-  }
-
-  .float-right {
-    display: flex;
-    float: right;
-    margin: auto;
-  }
-
-  .mr-0 {
-    margin-right: 0;
-  }
-
-  .ml-1 {
-    margin-left: 1em;
-  }
-
-  .mr-1 {
-    margin-right: 1em;
-  }
-
-  .mr-2 {
-    margin-right: 2em;
-  }
-
-  .mb-1 {
-    margin-bottom: 1em;
-  }
-</style>
-
-<div id="container">
-  <h2>Convert PX to EMs</h2>
-  <!-- <p>Enter a <em>pixel</em> value in the left input and click convert to see the relative <em>em</em> value.</p> -->
-  <p>The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
-  <div>
-    <div class="baseValue f-l mr-2">
-      <h5 class="mr-2">Base px</h5>
-      <h5 class="">Scale</h5>
+<div id="container" class="flex mx-auto w-full py-2 px-4">
+  <div class="w-full">
+    <h1 class="py-4 font-black text-3xl">Convert Pixels to Rem</h1>
+    <p class="text-lg font-medium pb-2 text-gray-600">The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
+  </div>
+</div>
+<div class="flex mx-auto w-full py-1 px-4">
+    <div class="flex flex-col w-1/4">
+      <h5 class="pb-2 font-bold text-lg">Base px</h5>
+      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
     </div>
-    <div class="baseValue f-l">
-      <input class="changeValue orange--outline mr-1" id="newPx" value="16">
-      <select name="conversionScale" id="scale" class="orange--outline">
-        <option value="1.000" selected>Browser default (1.000)</option>
-        <option value="1.067">Minor second (1.067)</option>
-        <option value="1.125">Major second (1.125)</option>
-        <option value="1.200">Minor third (1.200)</option>
-        <option value="1.250">Major third (1.250)</option>
-        <option value="1.333">Perfect fourth (1.333)</option>
-        <option value="1.414">Augmented fourth (1.414)</option>
-        <option value="1.500">Perfect fifth (1.500)</option>
-        <option value="1.618">Golden ratio (1.618)</option>
-      </select>
+    <div class="flex flex-col w-3/4">
+      <h5 class="pb-2 font-bold text-lg">Scale</h5>
+      <div class="relative">
+        <select name="conversionScale" id="scale" class="w-full py-2 px-4 text-lg font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
+          <option value="1.000" selected>Browser default (1.000)</option>
+          <option value="1.067">Minor second (1.067)</option>
+          <option value="1.125">Major second (1.125)</option>
+          <option value="1.200">Minor third (1.200)</option>
+          <option value="1.250">Major third (1.250)</option>
+          <option value="1.333">Perfect fourth (1.333)</option>
+          <option value="1.414">Augmented fourth (1.414)</option>
+          <option value="1.500">Perfect fifth (1.500)</option>
+          <option value="1.618">Golden ratio (1.618)</option>
+        </select>
+      </div>
+      <div class="absolute right-8 top-48 pt-3">
+        <svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 10.3203C9.3418 10.3105 9.6543 10.1836 9.9082 9.91016L17.3301 2.3125C17.5449 2.09766 17.6621 1.82422 17.6621 1.50195C17.6621 0.857422 17.1543 0.339844 16.5098 0.339844C16.1973 0.339844 15.8945 0.466797 15.6699 0.691406L9.00977 7.53711L2.33008 0.691406C2.10547 0.476562 1.8125 0.339844 1.49023 0.339844C0.845703 0.339844 0.337891 0.857422 0.337891 1.50195C0.337891 1.82422 0.455078 2.09766 0.669922 2.3125L8.10156 9.91016C8.36523 10.1836 8.6582 10.3203 9 10.3203Z" fill="#585663"/>
+        </svg>
+      </div>
+
     </div>
   </div>
-  <h3>Results</h3>
-  <div class="converter">
-    <h4>PX</h4>
-    <div>
-      <input class="input" id="px" value="16">
+  <div class="flex mx-auto w-full py-1 px-4">
+  <div class="w-2/3 space-y-2">
+    <h3 class="pb-2 pt-4 font-bold text-lg">Selections</h3>
+    <div class="flex pr-2 w-full items-center pb-4">
+      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="16">
+      <h4 class="pl-4 font-medium text-lg">Text pixels</h4>
     </div>
-    </h5>
-    <div class="result">
-      <h4 id="em">EM</h4>
-      <span id="result" class="value">1.00</span>
+    <div class="flex pr-2 w-full items-center pb-4">
+      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="16">
+      <h4 class="pl-4 font-medium text-lg">Width pixels</h4>
+    </div>
+    <div class="flex pr-2 w-full items-center pb-4">
+      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="16">
+      <h4 class="pl-4 font-medium text-lg">Height pixels</h4>
     </div>
   </div>
-  <div class="bottom">
-    <button id="convert" class="btn green">Convert</button>
+  <div class="w-1/3 space-y-2">
+    <h3 class="pb-2 pt-4 font-bold text-lg">Result (rem)</h3>
+      <div class="flex w-full items-center pb-4">
+        <p id="textResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
+      </div>
+      <div class="flex w-full items-center pb-4 pt-1">
+        <p id="widthResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
+      </div>
+      <div class="flex w-full items-center pb-4 pt-1">
+        <p id="heightResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
+      </div>
+    </div>
   </div>
+<div class="fixed bottom-6 left-0 right-0 mx-auto flex justify-center">
+  <div class="flex justify-center w-full">
+    <button id="convert" class="text-center text-white font-bold bg-green-600 py-4  w-64 rounded-full focus:outline-none">Convert</button>
+  </div>
+</div>
 </div>
 
 <script>
-
   onmessage = (event) => {
-    document.getElementById('px').value = event.data.pluginMessage.fontSize;
-    /* console.log(event.data.pluginMessage); */
+    if (event.data.pluginMessage.fontSize) {
+      document.getElementById('textPx').value = event.data.pluginMessage.fontSize;
+    }
+    else if (event.data.pluginMessage.width) {
+      document.getElementById('widthPx').value = event.data.pluginMessage.width.toFixed(0);
+    }
+    else if (event.data.pluginMessage.height) {
+      document.getElementById('heightPx').value = event.data.pluginMessage.height.toFixed(0);
+    }
+
+    document.getElementById('convert').onclick = () => {
+      if (event.data.pluginMessage.fontSize) {
+        const text = document.getElementById('textPx');
+        var result = pxToRem(text.value);
+        document.getElementById('textResult').innerHTML = (result().toFixed(2) || null);
+      }
+      if  (event.data.pluginMessage.width ||  event.data.pluginMessage.height) {
+        const width = document.getElementById('widthPx');
+        var result = pxToRem(width.value);
+        document.getElementById('widthResult').innerHTML = (result().toFixed(2) || null);
+        const height = document.getElementById('heightPx');
+        var result = pxToRem(height.value);
+        document.getElementById('heightResult').innerHTML = (result().toFixed(2) || null);
+      }
+    }
   }
 
-  document.getElementById('convert').onclick = () => {
-    const input = document.getElementById('px');
-    var result = pxToEms(input.value);
-    document.getElementById('result').innerHTML = result().toFixed(2);
-
-    input.addEventListener("keyup", function (event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById('convert').click();
-      }
-    });
-    const basePx = document.getElementById('newPx'); 
-    basePx.addEventListener("keyup", function (event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById('convert').click();
-      }
-    });
-  }
-
-  function pxToEms(px) {
+  function pxToRem(px) {
     var baseValue = document.getElementById('newPx').value;
-    var scale = document.getElementById('scale').value
+    var scale = document.getElementById('scale').value;
 
     function calculate() {
       return (px / baseValue) * scale;
@@ -261,6 +111,4 @@
 
     return calculate;
   }
-
-
 </script>
