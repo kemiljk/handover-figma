@@ -4,19 +4,19 @@
 
 <div id="container" class="flex mx-auto w-full py-2 px-4">
   <div class="w-full">
-    <h1 class="py-4 font-black text-3xl">Convert Pixels to Rem</h1>
-    <p class="text-lg font-medium pb-2 text-gray-600">The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
+    <h1 class="py-4 font-black text-xl">Convert Pixels to Rem</h1>
+    <p class="text-base font-medium pb-2 text-gray-600">The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
   </div>
 </div>
 <div class="flex mx-auto w-full py-1 px-4">
     <div class="flex flex-col w-1/4">
-      <h5 class="pb-2 font-bold text-lg">Base px</h5>
-      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
+      <h5 class="pb-2 font-bold text-base">Base px</h5>
+      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
     </div>
     <div class="flex flex-col w-3/4">
-      <h5 class="pb-2 font-bold text-lg">Scale</h5>
+      <h5 class="pb-2 font-bold text-base">Scale</h5>
       <div class="relative">
-        <select name="conversionScale" id="scale" class="w-full py-2 px-4 text-lg font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
+        <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-base font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
           <option value="1.000" selected>Browser default (1.000)</option>
           <option value="1.067">Minor second (1.067)</option>
           <option value="1.125">Major second (1.125)</option>
@@ -28,28 +28,22 @@
           <option value="1.618">Golden ratio (1.618)</option>
         </select>
       </div>
-      <div class="absolute right-8 top-48 pt-3">
-        <svg width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 10.3203C9.3418 10.3105 9.6543 10.1836 9.9082 9.91016L17.3301 2.3125C17.5449 2.09766 17.6621 1.82422 17.6621 1.50195C17.6621 0.857422 17.1543 0.339844 16.5098 0.339844C16.1973 0.339844 15.8945 0.466797 15.6699 0.691406L9.00977 7.53711L2.33008 0.691406C2.10547 0.476562 1.8125 0.339844 1.49023 0.339844C0.845703 0.339844 0.337891 0.857422 0.337891 1.50195C0.337891 1.82422 0.455078 2.09766 0.669922 2.3125L8.10156 9.91016C8.36523 10.1836 8.6582 10.3203 9 10.3203Z" fill="#585663"/>
-        </svg>
-      </div>
-
     </div>
   </div>
   <div class="flex mx-auto w-full py-1 px-4">
   <div class="w-2/3 space-y-2">
-    <h3 class="pb-2 pt-4 font-bold text-lg">Selections</h3>
+    <h3 class="pb-2 pt-4 font-bold text-base">Selections</h3>
     <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="16">
-      <h4 class="pl-4 font-medium text-lg">Text pixels</h4>
+      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="16">
+      <h4 class="pl-4 font-medium text-base">Text pixels</h4>
     </div>
     <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="16">
-      <h4 class="pl-4 font-medium text-lg">Width pixels</h4>
+      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="16">
+      <h4 class="pl-4 font-medium text-base">Width pixels</h4>
     </div>
     <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-lg font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="16">
-      <h4 class="pl-4 font-medium text-lg">Height pixels</h4>
+      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="16">
+      <h4 class="pl-4 font-medium text-base">Height pixels</h4>
     </div>
   </div>
   <div class="w-1/3 space-y-2">
