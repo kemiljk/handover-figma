@@ -6,6 +6,10 @@ function makeSelection() {
     if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'TEXT') {
         var textSelection = figma.currentPage.selection[0].fontSize;
         figma.ui.postMessage({ "fontSize": textSelection });
+        var textSelectionWidth = figma.currentPage.selection[0].width;
+        figma.ui.postMessage({ "width": textSelectionWidth });
+        var textSelectionHeight = figma.currentPage.selection[0].height;
+        figma.ui.postMessage({ "height": textSelectionHeight });
     }
     if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'RECTANGLE') {
         var rectSelectionWidth = figma.currentPage.selection[0].width;
@@ -24,6 +28,11 @@ function makeSelection() {
         figma.ui.postMessage({ "width": frameSelectionWidth });
         var frameSelectionHeight = figma.currentPage.selection[0].height;
         figma.ui.postMessage({ "height": frameSelectionHeight });
+        const frameTextSelection = figma.currentPage.findChildren(n => n.type === 'TEXT');
+        if (frameTextSelection.length > 0) {
+            return figma.currentPage.selection[0].fontSize;
+        }
+        figma.ui.postMessage({ "fontSize": frameTextSelection });
     }
     else if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'GROUP') {
         var groupSelectionWidth = figma.currentPage.selection[0].width;
