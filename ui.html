@@ -69,29 +69,26 @@
 <script>
   onmessage = (event) => {
     if (event.data.pluginMessage.fontSize) {
-      document.getElementById('textPx').value = event.data.pluginMessage.fontSize;
+      document.getElementById('textPx').value = event.data.pluginMessage.fontSize.toFixed(0);
     }
-    else if (event.data.pluginMessage.width) {
+    if (event.data.pluginMessage.width) {
       document.getElementById('widthPx').value = event.data.pluginMessage.width.toFixed(0);
     }
-    else if (event.data.pluginMessage.height) {
+    if (event.data.pluginMessage.height) {
       document.getElementById('heightPx').value = event.data.pluginMessage.height.toFixed(0);
     }
 
     document.getElementById('convert').onclick = () => {
-      if (event.data.pluginMessage.fontSize) {
         const text = document.getElementById('textPx');
         var result = pxToRem(text.value);
-        document.getElementById('textResult').innerHTML = (result().toFixed(2) || null);
-      }
-      if  (event.data.pluginMessage.width ||  event.data.pluginMessage.height) {
+        document.getElementById('textResult').innerHTML = (result().toFixed(2) 
+        || null);
         const width = document.getElementById('widthPx');
         var result = pxToRem(width.value);
         document.getElementById('widthResult').innerHTML = (result().toFixed(2) || null);
         const height = document.getElementById('heightPx');
         var result = pxToRem(height.value);
         document.getElementById('heightResult').innerHTML = (result().toFixed(2) || null);
-      }
     }
   }
 

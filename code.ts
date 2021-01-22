@@ -3,18 +3,42 @@ figma.showUI(__html__, { width: 500, height: 600 });
 if (figma.currentPage.selection.length < 1) {
   figma.notify("Select an object to get the selection value.")
 }
+
+// 'ELLIPSE', 'FRAME', 'GROUP', 'INSTANCE', 'COMPONENT', 'VECTOR', 'STAR', 'LINE', 'POLYGON'
+
+// const sceneObject = [
+//   {
+//     type: 'TEXT',
+//     node: 'TextNode'  
+//   },
+//   {
+//     type: 'RECTANGLE',
+//     node: 'RectangleNode'  
+//   }
+// ]
+// var i: any
+// for (i = 0; i < sceneObject.length; i++) {
+//   if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === sceneObject.type[i]) {
+//     var textSelection = (figma.currentPage.selection[0] as TextNode).fontSize;
+//     figma.ui.postMessage({ "fontSize": textSelection });
+//     var textSelectionWidth = (figma.currentPage.selection[0] as TextNode).width;
+//     figma.ui.postMessage({ "width": textSelectionWidth });
+//     var textSelectionHeight = (figma.currentPage.selection[0] as TextNode).height;
+//     figma.ui.postMessage({ "height": textSelectionHeight });
+//   } 
+// }
+
 function makeSelection() {
 
   if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'TEXT') {
-    var textSelection = figma.currentPage.selection[0].fontSize;
+    var textSelection = (figma.currentPage.selection[0] as TextNode).fontSize;
     figma.ui.postMessage({ "fontSize": textSelection });
     var textSelectionWidth = (figma.currentPage.selection[0] as TextNode).width;
     figma.ui.postMessage({ "width": textSelectionWidth });
     var textSelectionHeight = (figma.currentPage.selection[0] as TextNode).height;
     figma.ui.postMessage({ "height": textSelectionHeight });
   }
-
-  if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'RECTANGLE') {
+  else if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'RECTANGLE') {
     var rectSelectionWidth = (figma.currentPage.selection[0] as RectangleNode).width;
     figma.ui.postMessage({ "width": rectSelectionWidth });
     var rectSelectionHeight = (figma.currentPage.selection[0] as RectangleNode).height;
@@ -31,11 +55,9 @@ function makeSelection() {
     figma.ui.postMessage({ "width": frameSelectionWidth });
     var frameSelectionHeight = (figma.currentPage.selection[0] as FrameNode).height;
     figma.ui.postMessage({ "height": frameSelectionHeight });
-    const frameTextSelection = figma.currentPage.findChildren(n => n.type === 'TEXT')
-    if (frameTextSelection.length > 0) {
-      return (figma.currentPage.selection[0] as TextNode).fontSize;
-    }
-    figma.ui.postMessage({ "fontSize": frameTextSelection });
+    // const frameText = figma.currentPage.selection[0].findChild(n => n.type === 'TEXT')
+    // console.log(frameText)
+    // figma.ui.postMessage({ "fontSize": frameText });
   }
   else if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'GROUP') {
     var groupSelectionWidth = (figma.currentPage.selection[0] as GroupNode).width;
