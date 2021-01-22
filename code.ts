@@ -49,6 +49,12 @@ function makeSelection() {
     figma.ui.postMessage({ "width": ellipseSelectionWidth });
     var ellipseSelectionHeight = (figma.currentPage.selection[0] as EllipseNode).height;
     figma.ui.postMessage({ "height": ellipseSelectionHeight });
+    var ellipseSelectionArcStart = (figma.currentPage.selection[0] as EllipseNode).arcData.startingAngle;
+    figma.ui.postMessage({ "startingAngle": ellipseSelectionArcStart });
+    var ellipseSelectionArcEnd = (figma.currentPage.selection[0] as EllipseNode).arcData.endingAngle;
+    figma.ui.postMessage({ "endingAngle": ellipseSelectionArcEnd });
+    var ellipseSelectionArcInnerRadius = (figma.currentPage.selection[0] as EllipseNode).arcData.innerRadius;
+    figma.ui.postMessage({ "innerRadius": ellipseSelectionArcInnerRadius });
   }
   else if (figma.currentPage.selection.length === 1 && figma.currentPage.selection[0].type === 'FRAME') {
     var frameSelectionWidth = (figma.currentPage.selection[0] as FrameNode).width;

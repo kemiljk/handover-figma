@@ -4,19 +4,19 @@
 
 <div id="container" class="flex mx-auto w-full py-2 px-4">
   <div class="w-full">
-    <h1 class="py-4 font-black text-xl">Convert Pixels to Rem</h1>
+    <h1 class="py-4 font-black text-lg">Convert Pixels to Rem</h1>
     <p class="text-base font-medium pb-2 text-gray-600">The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
   </div>
 </div>
 <div class="flex mx-auto w-full py-1 px-4">
     <div class="flex flex-col w-1/4">
       <h5 class="pb-2 font-bold text-base">Base px</h5>
-      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
+      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
     </div>
     <div class="flex flex-col w-3/4">
       <h5 class="pb-2 font-bold text-base">Scale</h5>
       <div class="relative">
-        <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-base font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
+        <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
           <option value="1.000" selected>Browser default (1.000)</option>
           <option value="1.067">Minor second (1.067)</option>
           <option value="1.125">Major second (1.125)</option>
@@ -34,15 +34,19 @@
   <div class="w-2/3 space-y-2">
     <h3 class="pb-2 pt-4 font-bold text-base">Selections</h3>
     <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="16">
+      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="16">
       <h4 class="pl-4 font-medium text-base">Text pixels</h4>
     </div>
     <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="16">
+      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="16">
       <h4 class="pl-4 font-medium text-base">Width pixels</h4>
     </div>
     <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-base font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="16">
+      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="16">
+      <h4 class="pl-4 font-medium text-base">Height pixels</h4>
+    </div>
+    <div class="flex pr-2 w-full items-center pb-4">
+      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="arcPx" value="16">
       <h4 class="pl-4 font-medium text-base">Height pixels</h4>
     </div>
   </div>
@@ -56,6 +60,9 @@
       </div>
       <div class="flex w-full items-center pb-4 pt-1">
         <p id="heightResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
+      </div>
+      <div class="flex w-full items-center pb-4 pt-1">
+        <p id="arcResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
       </div>
     </div>
   </div>
@@ -77,6 +84,9 @@
     if (event.data.pluginMessage.height) {
       document.getElementById('heightPx').value = event.data.pluginMessage.height.toFixed(0);
     }
+    if (event.data.pluginMessage.arcData) {
+      document.getElementById('arcPx').value = event.data.pluginMessage.arcData.toFixed(0);
+    }
 
     document.getElementById('convert').onclick = () => {
         const text = document.getElementById('textPx');
@@ -89,6 +99,9 @@
         const height = document.getElementById('heightPx');
         var result = pxToRem(height.value);
         document.getElementById('heightResult').innerHTML = (result().toFixed(2) || null);
+        const arc = document.getElementById('arcPx');
+        var result = pxToRem(arc.value);
+        document.getElementById('arcResult').innerHTML = (result().toFixed(2) || null);
     }
   }
 
