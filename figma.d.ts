@@ -572,8 +572,12 @@ interface DefaultFrameMixin extends
 
   layoutMode: "NONE" | "HORIZONTAL" | "VERTICAL"
   counterAxisSizingMode: "FIXED" | "AUTO" // applicable only if layoutMode != "NONE"
-  horizontalPadding: number // applicable only if layoutMode != "NONE"
-  verticalPadding: number // applicable only if layoutMode != "NONE"
+  // horizontalPadding: number
+  // verticalPadding: number
+  paddingLeft: number
+  paddingRight: number
+  paddingTop: number
+  paddingBottom: number
   itemSpacing: number // applicable only if layoutMode != "NONE"
 
   layoutGrids: ReadonlyArray<LayoutGrid>
