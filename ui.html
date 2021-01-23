@@ -2,75 +2,114 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<div id="container" class="flex mx-auto w-full py-2 px-4">
-  <div class="w-full">
-    <h1 class="py-4 font-black text-lg">Convert Pixels to Rem</h1>
-    <p class="text-base font-medium pb-2 text-gray-600">The base <em>pixel</em> value is 16px with a scale of 1. <br />Change the base value and/or scale below.</p>
-  </div>
-</div>
-<div class="flex mx-auto w-full py-1 px-4">
-    <div class="flex flex-col w-1/4">
-      <h5 class="pb-2 font-bold text-base">Base px</h5>
-      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
+  <div class="fixed mx-auto bg-white w-full py-2 px-4">
+    <div class="w-full">
+      <h1 class="py-4 font-black text-2xl">Convert Pixels to Rem</h1>
     </div>
-    <div class="flex flex-col w-3/4">
-      <h5 class="pb-2 font-bold text-base">Scale</h5>
-      <div class="relative">
-        <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
-          <option value="1.000" selected>Browser default (1.000)</option>
-          <option value="1.067">Minor second (1.067)</option>
-          <option value="1.125">Major second (1.125)</option>
-          <option value="1.200">Minor third (1.200)</option>
-          <option value="1.250">Major third (1.250)</option>
-          <option value="1.333">Perfect fourth (1.333)</option>
-          <option value="1.414">Augmented fourth (1.414)</option>
-          <option value="1.500">Perfect fifth (1.500)</option>
-          <option value="1.618">Golden ratio (1.618)</option>
-        </select>
+    <div class="flex mx-auto">
+      <div class="flex flex-col w-1/4">
+        <h5 class="pb-2 font-bold text-base">Base px</h5>
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
+      </div>
+      <div class="flex flex-col w-3/4">
+        <h5 class="pb-2 font-bold text-base">Scale</h5>
+        <div class="relative">
+          <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
+            <option value="1.000" selected>Browser default (1.000)</option>
+            <option value="1.067">Minor second (1.067)</option>
+            <option value="1.125">Major second (1.125)</option>
+            <option value="1.200">Minor third (1.200)</option>
+            <option value="1.250">Major third (1.250)</option>
+            <option value="1.333">Perfect fourth (1.333)</option>
+            <option value="1.414">Augmented fourth (1.414)</option>
+            <option value="1.500">Perfect fifth (1.500)</option>
+            <option value="1.618">Golden ratio (1.618)</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-  <div class="flex mx-auto w-full py-1 px-4">
+  <div class="flex mx-auto w-full py-1 px-4 overflow-y-auto pt-40 pb-24">
   <div class="w-2/3 space-y-2">
-    <h3 class="pb-2 pt-4 font-bold text-base">Selections</h3>
-    <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="16">
-      <h4 class="pl-4 font-medium text-base">Text pixels</h4>
-    </div>
-    <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="16">
-      <h4 class="pl-4 font-medium text-base">Width pixels</h4>
-    </div>
-    <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="16">
-      <h4 class="pl-4 font-medium text-base">Height pixels</h4>
-    </div>
-    <div class="flex pr-2 w-full items-center pb-4">
-      <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="arcPx" value="16">
-      <h4 class="pl-4 font-medium text-base">Height pixels</h4>
+    <h3 class="pb-2 pt-4 font-bold text-base">Selections (pixels)</h3>
+    <form id="resetPx">
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Text</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Width</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Height</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="radiusPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Border Radius</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="strokePx" value="0">
+        <h4 class="pl-4 font-medium text-base">Stroke Weight</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="xPx" value="0">
+        <h4 class="pl-4 font-medium text-base">X position</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="yPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Y position</h4>
+      </div>
+      <!-- <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="horizontalPaddingPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Horizontal padding</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="verticalPaddingPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Vertical padding</h4>
+      </div> -->
+    </form>
+  </div>
+  <div class="w-1/3">
+    <h3 class="pb-2 pt-4 font-bold text-base">Result (rem)</h3>
+    <form id="resetRem">
+      <div class="flex w-full items-center pb-3.5">
+        <span id="textResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="widthResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="heightResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="radiusResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="strokeResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="xResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="yResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <!-- <div class="flex w-full items-center pb-3.5">
+        <span id="horizontalPaddingResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="verticalPaddingResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div> -->
+    </form>
     </div>
   </div>
-  <div class="w-1/3 space-y-2">
-    <h3 class="pb-2 pt-4 font-bold text-lg">Result (rem)</h3>
-      <div class="flex w-full items-center pb-4">
-        <p id="textResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
-      </div>
-      <div class="flex w-full items-center pb-4 pt-1">
-        <p id="widthResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
-      </div>
-      <div class="flex w-full items-center pb-4 pt-1">
-        <p id="heightResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
-      </div>
-      <div class="flex w-full items-center pb-4 pt-1">
-        <p id="arcResult" class="w-full py-2 text-xl font-black text-green-600">1.00</p>
-      </div>
+  <div class="fixed bg-white py-4 bottom-0 left-0 right-0 mx-auto flex justify-center">
+    <div class="flex justify-center w-full space-x-4">
+      <button id="convert" class="text-center text-white font-bold bg-green-600 py-4  w-48 rounded-full focus:outline-none">Convert</button>
+      <button id="reset" class="text-center text-gray-700 font-bold bg-gray-200 py-4  w-48 rounded-full focus:outline-none">Reset</button>
     </div>
   </div>
-<div class="fixed bottom-6 left-0 right-0 mx-auto flex justify-center">
-  <div class="flex justify-center w-full">
-    <button id="convert" class="text-center text-white font-bold bg-green-600 py-4  w-64 rounded-full focus:outline-none">Convert</button>
-  </div>
-</div>
 </div>
 
 <script>
@@ -84,26 +123,74 @@
     if (event.data.pluginMessage.height) {
       document.getElementById('heightPx').value = event.data.pluginMessage.height.toFixed(0);
     }
-    if (event.data.pluginMessage.arcData) {
-      document.getElementById('arcPx').value = event.data.pluginMessage.arcData.toFixed(0);
+    if (event.data.pluginMessage.cornerRadius) {
+      document.getElementById('radiusPx').value = event.data.pluginMessage.cornerRadius.toFixed(0);
     }
+    if (event.data.pluginMessage.strokeWeight) {
+      document.getElementById('strokePx').value = event.data.pluginMessage.strokeWeight.toFixed(0);
+    }
+    if (event.data.pluginMessage.x) {
+      document.getElementById('xPx').value = event.data.pluginMessage.x.toFixed(0);
+    }
+    if (event.data.pluginMessage.y) {
+      document.getElementById('yPx').value = event.data.pluginMessage.y.toFixed(0);
+    }
+    // if (event.data.pluginMessage.paddingTop) {
+    //   document.getElementById('horizontalPadding').value = event.data.pluginMessage.paddingTop.toFixed(0);
+    // }
+    // if (event.data.pluginMessage.paddingBottom) {
+    //   document.getElementById('verticalPadding').value = event.data.pluginMessage.paddingBottom.toFixed(0);
+    // }
+    // if (event.data.pluginMessage.arcData) {
+    //   document.getElementById('arcPx').value = event.data.pluginMessage.arcData.toFixed(0);
+    // }
 
     document.getElementById('convert').onclick = () => {
         const text = document.getElementById('textPx');
         var result = pxToRem(text.value);
-        document.getElementById('textResult').innerHTML = (result().toFixed(2) 
-        || null);
+        document.getElementById('textResult').innerHTML = (result().toFixed(2)
+        || 0);
         const width = document.getElementById('widthPx');
         var result = pxToRem(width.value);
-        document.getElementById('widthResult').innerHTML = (result().toFixed(2) || null);
+        document.getElementById('widthResult').innerHTML = (result().toFixed(2) || 0);
         const height = document.getElementById('heightPx');
         var result = pxToRem(height.value);
-        document.getElementById('heightResult').innerHTML = (result().toFixed(2) || null);
-        const arc = document.getElementById('arcPx');
-        var result = pxToRem(arc.value);
-        document.getElementById('arcResult').innerHTML = (result().toFixed(2) || null);
+        document.getElementById('heightResult').innerHTML = (result().toFixed(2) || 0);
+        // const arc = document.getElementById('arcPx');
+        // var result = pxToRem(arc.value);
+        // document.getElementById('arcResult').innerHTML = (result().toFixed(2) || 0);
+        const radius = document.getElementById('radiusPx');
+        var result = pxToRem(radius.value);
+        document.getElementById('radiusResult').innerHTML = (result().toFixed(2) || 0);
+        const stroke = document.getElementById('strokePx');
+        var result = pxToRem(stroke.value);
+        document.getElementById('strokeResult').innerHTML = (result().toFixed(2) || 0);
+        const x = document.getElementById('xPx');
+        var result = pxToRem(x.value);
+        document.getElementById('xResult').innerHTML = (result().toFixed(2) || 0);
+        const y = document.getElementById('yPx');
+        var result = pxToRem(y.value);
+        document.getElementById('yResult').innerHTML = (result().toFixed(2) || 0);
+        // const horizontalPadding = document.getElementById('horizontalPaddingPx');
+        // var result = pxToRem(horizontalPadding.value);
+        // document.getElementById('horizontalPaddingResult').innerHTML = (result().toFixed(2) || 0);
+        // const verticalPadding = document.getElementById('verticalPaddingPx');
+        // var result = pxToRem(verticalPadding.value);
+        // document.getElementById('verticalPaddingResult').innerHTML = (result().toFixed(2) || 0);
     }
   }
+
+    document.getElementById('reset').onclick = () => {
+      document.getElementById('resetPx').reset();
+      // var rem = document.getElementById('resetRem')
+        document.getElementById('textResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('widthResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('heightResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('radiusResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('strokeResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('xResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('yResult').innerHTML = 0.00.toFixed(2)
+    }
 
   function pxToRem(px) {
     var baseValue = document.getElementById('newPx').value;
