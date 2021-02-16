@@ -86,6 +86,8 @@ function makeSelection() {
         figma.ui.postMessage({ paddingLeft: paddingL });
         var paddingR = figma.currentPage.selection[0].paddingRight;
         figma.ui.postMessage({ paddingRight: paddingR });
+        var itemSpacing = figma.currentPage.selection[0].itemSpacing;
+        figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
     else if (figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "GROUP") {
@@ -128,6 +130,9 @@ function makeSelection() {
         var paddingR = figma.currentPage.selection[0]
             .paddingRight;
         figma.ui.postMessage({ paddingRight: paddingR });
+        var itemSpacing = figma.currentPage.selection[0]
+            .itemSpacing;
+        figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
     else if ((figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "COMPONENT") ||
@@ -161,6 +166,9 @@ function makeSelection() {
         var paddingR = figma.currentPage.selection[0]
             .paddingRight;
         figma.ui.postMessage({ paddingRight: paddingR });
+        var itemSpacing = figma.currentPage.selection[0]
+            .itemSpacing;
+        figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
     else if (figma.currentPage.selection.length > 0 &&
         figma.currentPage.selection[0].type === "VECTOR") {
