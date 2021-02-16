@@ -2,19 +2,16 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-  <div class="fixed mx-auto bg-white w-full py-2 px-4">
-    <div class="w-full">
-      <h1 class="py-4 font-black text-2xl">Convert Pixels to Rem</h1>
-    </div>
+  <div class="fixed mx-auto bg-white w-full pt-2 pb-4 px-4 border-b-2 border-gray-200">
     <div class="flex mx-auto">
       <div class="flex flex-col w-1/4">
         <h5 class="pb-2 font-bold text-base">Base px</h5>
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600" id="newPx" value="16">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="newPx" value="16">
       </div>
       <div class="flex flex-col w-3/4">
         <h5 class="pb-2 font-bold text-base">Scale</h5>
         <div class="relative">
-          <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-sm font-medium border-2 border-yellow-600 rounded-xl focus:outline-none ring-2 ring-yellow-600 focus:ring-2 focus:ring-yellow-600">
+          <select name="conversionScale" id="scale" class="w-full py-2.5 px-4 text-sm font-medium border-2 border-gray-600 rounded  focus:outline-none focus:ring-2 focus:ring-gray-900">
             <option value="1.000" selected>Browser default (1.000)</option>
             <option value="1.067">Minor second (1.067)</option>
             <option value="1.125">Major second (1.125)</option>
@@ -29,46 +26,54 @@
       </div>
     </div>
   </div>
-  <div class="flex mx-auto w-full py-1 px-4 overflow-y-auto pt-40 pb-24">
+  <div class="flex mx-auto w-full py-1 px-4 overflow-y-auto pt-24 pb-24">
   <div class="w-2/3 space-y-2">
     <h3 class="pb-2 pt-4 font-bold text-base">Selections (pixels)</h3>
     <form id="resetPx">
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="textPx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="textPx" value="0">
         <h4 class="pl-4 font-medium text-base">Text</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="widthPx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="widthPx" value="0">
         <h4 class="pl-4 font-medium text-base">Width</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="heightPx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="heightPx" value="0">
         <h4 class="pl-4 font-medium text-base">Height</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="radiusPx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="radiusPx" value="0">
         <h4 class="pl-4 font-medium text-base">Border Radius</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="strokePx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="strokePx" value="0">
         <h4 class="pl-4 font-medium text-base">Stroke Weight</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="xPx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="xPx" value="0">
         <h4 class="pl-4 font-medium text-base">X position</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="yPx" value="0">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="yPx" value="0">
         <h4 class="pl-4 font-medium text-base">Y position</h4>
       </div>
-      <!-- <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="horizontalPaddingPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Horizontal padding</h4>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="paddingTPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Top padding</h4>
       </div>
       <div class="flex pr-2 w-full items-center pb-4">
-        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-green-600 rounded-xl focus:outline-none ring-2 ring-green-700 focus:ring-2 focus:ring-green-600" id="verticalPaddingPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Vertical padding</h4>
-      </div> -->
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="paddingBPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Bottom padding</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="paddingLPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Left padding</h4>
+      </div>
+      <div class="flex pr-2 w-full items-center pb-4">
+        <input class="w-24 py-2 px-4 text-sm font-medium border-2 border-gray-600 border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-gray-900" id="paddingRPx" value="0">
+        <h4 class="pl-4 font-medium text-base">Right padding</h4>
+      </div>
     </form>
   </div>
   <div class="w-1/3">
@@ -95,19 +100,25 @@
       <div class="flex w-full items-center pb-3.5">
         <span id="yResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
       </div>
-      <!-- <div class="flex w-full items-center pb-3.5">
-        <span id="horizontalPaddingResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="paddingTResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
       </div>
       <div class="flex w-full items-center pb-3.5">
-        <span id="verticalPaddingResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div> -->
+        <span id="paddingBResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="paddingLResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
+      <div class="flex w-full items-center pb-3.5">
+        <span id="paddingRResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
+      </div>
     </form>
     </div>
   </div>
   <div class="fixed bg-white py-4 bottom-0 left-0 right-0 mx-auto flex justify-center">
     <div class="flex justify-center w-full space-x-4">
-      <button id="convert" class="text-center text-white font-bold bg-green-600 py-4  w-48 rounded-full focus:outline-none">Convert</button>
-      <button id="reset" class="text-center text-gray-700 font-bold bg-gray-200 py-4  w-48 rounded-full focus:outline-none">Reset</button>
+      <button id="convert" class="text-center text-gray-900 font-bold border-2 border-gray-900 py-2 w-32 rounded focus:outline-none hover:bg-gray-200">Convert</button>
+      <button id="reset" class="text-center text-gray-700 font-bold bg-gray-200 py-2 w-32 rounded focus:outline-none">Reset</button>
     </div>
   </div>
 </div>
@@ -135,12 +146,18 @@
     if (event.data.pluginMessage.y) {
       document.getElementById('yPx').value = event.data.pluginMessage.y.toFixed(0);
     }
-    // if (event.data.pluginMessage.paddingTop) {
-    //   document.getElementById('horizontalPadding').value = event.data.pluginMessage.paddingTop.toFixed(0);
-    // }
-    // if (event.data.pluginMessage.paddingBottom) {
-    //   document.getElementById('verticalPadding').value = event.data.pluginMessage.paddingBottom.toFixed(0);
-    // }
+    if (event.data.pluginMessage.paddingTop) {
+      document.getElementById('paddingTPx').value = event.data.pluginMessage.paddingTop.toFixed(0);
+    }
+    if (event.data.pluginMessage.paddingBottom) {
+      document.getElementById('paddingBPx').value = event.data.pluginMessage.paddingBottom.toFixed(0);
+    }
+    if (event.data.pluginMessage.paddingLeft) {
+      document.getElementById('paddingLPx').value = event.data.pluginMessage.paddingLeft.toFixed(0);
+    }
+    if (event.data.pluginMessage.paddingRight) {
+      document.getElementById('paddingRPx').value = event.data.pluginMessage.paddingRight.toFixed(0);
+    }
     // if (event.data.pluginMessage.arcData) {
     //   document.getElementById('arcPx').value = event.data.pluginMessage.arcData.toFixed(0);
     // }
@@ -171,18 +188,23 @@
         const y = document.getElementById('yPx');
         var result = pxToRem(y.value);
         document.getElementById('yResult').innerHTML = (result().toFixed(2) || 0);
-        // const horizontalPadding = document.getElementById('horizontalPaddingPx');
-        // var result = pxToRem(horizontalPadding.value);
-        // document.getElementById('horizontalPaddingResult').innerHTML = (result().toFixed(2) || 0);
-        // const verticalPadding = document.getElementById('verticalPaddingPx');
-        // var result = pxToRem(verticalPadding.value);
-        // document.getElementById('verticalPaddingResult').innerHTML = (result().toFixed(2) || 0);
+        const paddingT = document.getElementById('paddingTPx');
+        var result = pxToRem(paddingT.value);
+        document.getElementById('paddingTResult').innerHTML = (result().toFixed(2) || 0);
+        const paddingB = document.getElementById('paddingBPx');
+        var result = pxToRem(paddingB.value);
+        document.getElementById('paddingBResult').innerHTML = (result().toFixed(2) || 0);
+        const paddingL = document.getElementById('paddingLPx');
+        var result = pxToRem(paddingL.value);
+        document.getElementById('paddingLResult').innerHTML = (result().toFixed(2) || 0);
+        const paddingR = document.getElementById('paddingRPx');
+        var result = pxToRem(paddingR.value);
+        document.getElementById('paddingRResult').innerHTML = (result().toFixed(2) || 0);
     }
   }
 
     document.getElementById('reset').onclick = () => {
       document.getElementById('resetPx').reset();
-      // var rem = document.getElementById('resetRem')
         document.getElementById('textResult').innerHTML = 0.00.toFixed(2)
         document.getElementById('widthResult').innerHTML = 0.00.toFixed(2)
         document.getElementById('heightResult').innerHTML = 0.00.toFixed(2)
@@ -190,6 +212,10 @@
         document.getElementById('strokeResult').innerHTML = 0.00.toFixed(2)
         document.getElementById('xResult').innerHTML = 0.00.toFixed(2)
         document.getElementById('yResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('paddingTResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('paddingBResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('paddingLResult').innerHTML = 0.00.toFixed(2)
+        document.getElementById('paddingRResult').innerHTML = 0.00.toFixed(2)
     }
 
   function pxToRem(px) {
