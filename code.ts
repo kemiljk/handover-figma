@@ -1,4 +1,4 @@
-figma.showUI(__html__, { width: 500, height: 600 });
+figma.showUI(__html__, { width: 500, height: 800 });
 
 if (figma.currentPage.selection.length === 0) {
   figma.notify("Select an object to get the selection value.");
@@ -7,6 +7,8 @@ if (figma.currentPage.selection.length === 0) {
 async function makeSelection() {
   const { selection } = figma.currentPage;
   if (selection.length > 0 && selection[0].type === "TEXT") {
+    let textType = (selection[0] as TextNode).type;
+    figma.ui.postMessage({ component: textType });
     let textSelection = (selection[0] as TextNode).fontSize;
     figma.ui.postMessage({ fontSize: textSelection });
     let textSelectionWidth = (selection[0] as TextNode).width;
@@ -24,12 +26,13 @@ async function makeSelection() {
       (selection[0] as TextNode).characters.length
     );
     figma.ui.postMessage({ lineHeight: textSelectionLineHeight.value });
-    let textSelectionLetterSpacing = (selection[0] as TextNode).getRangeLetterSpacing(
-      0,
-      (selection[0] as TextNode).characters.length
-    );
+    let textSelectionLetterSpacing = (
+      selection[0] as TextNode
+    ).getRangeLetterSpacing(0, (selection[0] as TextNode).characters.length);
     figma.ui.postMessage({ letterSpacing: textSelectionLetterSpacing.value });
   } else if (selection.length > 0 && selection[0].type === "RECTANGLE") {
+    let rectType = (selection[0] as RectangleNode).type;
+    figma.ui.postMessage({ component: rectType });
     let rectSelectionWidth = (figma.currentPage.selection[0] as RectangleNode)
       .width;
     figma.ui.postMessage({ width: rectSelectionWidth });
@@ -44,6 +47,8 @@ async function makeSelection() {
     let rectangleSelectionY = (selection[0] as RectangleNode).y;
     figma.ui.postMessage({ y: rectangleSelectionY });
   } else if (selection.length > 0 && selection[0].type === "ELLIPSE") {
+    let ellType = (selection[0] as EllipseNode).type;
+    figma.ui.postMessage({ component: ellType });
     let ellipseSelectionWidth = (selection[0] as EllipseNode).width;
     figma.ui.postMessage({ width: ellipseSelectionWidth });
     let ellipseSelectionHeight = (selection[0] as EllipseNode).height;
@@ -64,6 +69,8 @@ async function makeSelection() {
     let ellipseSelectionY = (selection[0] as EllipseNode).y;
     figma.ui.postMessage({ y: ellipseSelectionY });
   } else if (selection.length > 0 && selection[0].type === "FRAME") {
+    let frameType = (selection[0] as FrameNode).type;
+    figma.ui.postMessage({ component: frameType });
     let frameSelectionWidth = (selection[0] as FrameNode).width;
     figma.ui.postMessage({ width: frameSelectionWidth });
     let frameSelectionHeight = (selection[0] as FrameNode).height;
@@ -83,6 +90,8 @@ async function makeSelection() {
     let itemSpacing = (selection[0] as FrameNode).itemSpacing;
     figma.ui.postMessage({ itemSpacing: itemSpacing });
   } else if (selection.length > 0 && selection[0].type === "GROUP") {
+    let groupType = (selection[0] as GroupNode).type;
+    figma.ui.postMessage({ component: groupType });
     let groupSelectionWidth = (selection[0] as GroupNode).width;
     figma.ui.postMessage({ width: groupSelectionWidth });
     let groupSelectionHeight = (selection[0] as GroupNode).height;
@@ -92,6 +101,8 @@ async function makeSelection() {
     let groupSelectionY = (selection[0] as GroupNode).y;
     figma.ui.postMessage({ y: groupSelectionY });
   } else if (selection.length > 0 && selection[0].type === "INSTANCE") {
+    let inType = (selection[0] as InstanceNode).type;
+    figma.ui.postMessage({ component: inType });
     let instanceSelectionWidth = (selection[0] as InstanceNode).width;
     figma.ui.postMessage({ width: instanceSelectionWidth });
     let instanceSelectionHeight = (selection[0] as InstanceNode).height;
@@ -118,6 +129,8 @@ async function makeSelection() {
     (selection.length > 0 && selection[0].type === "COMPONENT") ||
     "COMPONENT_SET"
   ) {
+    let comType = (selection[0] as ComponentNode).type;
+    figma.ui.postMessage({ component: comType });
     let componentSelectionWidth = (selection[0] as ComponentNode).width;
     figma.ui.postMessage({ width: componentSelectionWidth });
     let componentSelectionHeight = (selection[0] as ComponentNode).height;
@@ -141,6 +154,8 @@ async function makeSelection() {
     let itemSpacing = (selection[0] as ComponentNode).itemSpacing;
     figma.ui.postMessage({ itemSpacing: itemSpacing });
   } else if (selection.length > 0 && selection[0].type === "VECTOR") {
+    let vecType = (selection[0] as VectorNode).type;
+    figma.ui.postMessage({ component: vecType });
     let vectorSelectionWidth = (selection[0] as VectorNode).width;
     figma.ui.postMessage({ width: vectorSelectionWidth });
     let vectorSelectionHeight = (selection[0] as VectorNode).height;
@@ -152,6 +167,8 @@ async function makeSelection() {
     let vectorSelectionY = (selection[0] as VectorNode).y;
     figma.ui.postMessage({ y: vectorSelectionY });
   } else if (selection.length > 0 && selection[0].type === "STAR") {
+    let starType = (selection[0] as StarNode).type;
+    figma.ui.postMessage({ component: starType });
     let starSelectionWidth = (selection[0] as StarNode).width;
     figma.ui.postMessage({ width: starSelectionWidth });
     let starSelectionHeight = (selection[0] as StarNode).height;
@@ -165,6 +182,8 @@ async function makeSelection() {
     let starSelectionY = (selection[0] as StarNode).y;
     figma.ui.postMessage({ y: starSelectionY });
   } else if (selection.length > 0 && selection[0].type === "LINE") {
+    let lineType = (selection[0] as LineNode).type;
+    figma.ui.postMessage({ component: lineType });
     let lineSelectionWidth = (selection[0] as LineNode).width;
     figma.ui.postMessage({ width: lineSelectionWidth });
     let lineSelectionHeight = (selection[0] as LineNode).height;
@@ -176,6 +195,8 @@ async function makeSelection() {
     let lineSelectionY = (selection[0] as LineNode).y;
     figma.ui.postMessage({ y: lineSelectionY });
   } else if (selection.length > 0 && selection[0].type === "POLYGON") {
+    let polyType = (selection[0] as PolygonNode).type;
+    figma.ui.postMessage({ component: polyType });
     let polygonSelectionWidth = (selection[0] as PolygonNode).width;
     figma.ui.postMessage({ width: polygonSelectionWidth });
     let polygonSelectionHeight = (selection[0] as PolygonNode).height;
