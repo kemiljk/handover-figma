@@ -1,244 +1,216 @@
-figma.showUI(__html__, { width: 500, height: 600 });
+figma.showUI(__html__, { width: 500, height: 800 });
 if (figma.currentPage.selection.length === 0) {
     figma.notify("Select an object to get the selection value.");
 }
-function makeSelection() {
-    if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "TEXT") {
-        var textSelection = figma.currentPage.selection[0].fontSize;
+async function makeSelection() {
+    const { selection } = figma.currentPage;
+    if (selection.length > 0 && selection[0].type === "TEXT") {
+        let textType = selection[0].type;
+        figma.ui.postMessage({ component: textType });
+        let textSelection = selection[0].fontSize;
         figma.ui.postMessage({ fontSize: textSelection });
-        var textSelectionWidth = figma.currentPage.selection[0].width;
+        let textSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: textSelectionWidth });
-        var textSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let textSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: textSelectionHeight });
-        var textSelectionStroke = figma.currentPage.selection[0]
-            .strokeWeight;
+        let textSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: textSelectionStroke });
-        var textSelectionX = figma.currentPage.selection[0].x;
+        let textSelectionX = selection[0].x;
         figma.ui.postMessage({ x: textSelectionX });
-        var textSelectionY = figma.currentPage.selection[0].y;
+        let textSelectionY = selection[0].y;
         figma.ui.postMessage({ y: textSelectionY });
+        let textSelectionLineHeight = selection[0].getRangeLineHeight(0, selection[0].characters.length);
+        figma.ui.postMessage({ lineHeight: textSelectionLineHeight.value });
+        let textSelectionLetterSpacing = selection[0].getRangeLetterSpacing(0, selection[0].characters.length);
+        figma.ui.postMessage({ letterSpacing: textSelectionLetterSpacing.value });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "RECTANGLE") {
-        var rectSelectionWidth = figma.currentPage.selection[0]
+    else if (selection.length > 0 && selection[0].type === "RECTANGLE") {
+        let rectType = selection[0].type;
+        figma.ui.postMessage({ component: rectType });
+        let rectSelectionWidth = figma.currentPage.selection[0]
             .width;
         figma.ui.postMessage({ width: rectSelectionWidth });
-        var rectSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let rectSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: rectSelectionHeight });
-        var rectSelectionRadius = figma.currentPage.selection[0]
-            .cornerRadius;
+        let rectSelectionRadius = selection[0].cornerRadius;
         figma.ui.postMessage({ cornerRadius: rectSelectionRadius });
-        var rectangleSelectionStroke = figma.currentPage
-            .selection[0].strokeWeight;
+        let rectangleSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: rectangleSelectionStroke });
-        var rectangleSelectionX = figma.currentPage.selection[0]
-            .x;
+        let rectangleSelectionX = selection[0].x;
         figma.ui.postMessage({ x: rectangleSelectionX });
-        var rectangleSelectionY = figma.currentPage.selection[0]
-            .y;
+        let rectangleSelectionY = selection[0].y;
         figma.ui.postMessage({ y: rectangleSelectionY });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "ELLIPSE") {
-        var ellipseSelectionWidth = figma.currentPage.selection[0]
-            .width;
+    else if (selection.length > 0 && selection[0].type === "ELLIPSE") {
+        let ellType = selection[0].type;
+        figma.ui.postMessage({ component: ellType });
+        let ellipseSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: ellipseSelectionWidth });
-        var ellipseSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let ellipseSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: ellipseSelectionHeight });
-        var ellipseSelectionArcStart = figma.currentPage
-            .selection[0].arcData.startingAngle;
+        let ellipseSelectionArcStart = selection[0].arcData
+            .startingAngle;
         figma.ui.postMessage({ startingAngle: ellipseSelectionArcStart });
-        var ellipseSelectionArcEnd = figma.currentPage.selection[0]
-            .arcData.endingAngle;
+        let ellipseSelectionArcEnd = selection[0].arcData
+            .endingAngle;
         figma.ui.postMessage({ endingAngle: ellipseSelectionArcEnd });
-        var ellipseSelectionArcInnerRadius = figma.currentPage
-            .selection[0].arcData.innerRadius;
+        let ellipseSelectionArcInnerRadius = selection[0].arcData
+            .innerRadius;
         figma.ui.postMessage({ innerRadius: ellipseSelectionArcInnerRadius });
-        var ellipseSelectionStroke = figma.currentPage.selection[0]
-            .strokeWeight;
+        let ellipseSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: ellipseSelectionStroke });
-        var ellipseSelectionX = figma.currentPage.selection[0].x;
+        let ellipseSelectionX = selection[0].x;
         figma.ui.postMessage({ x: ellipseSelectionX });
-        var ellipseSelectionY = figma.currentPage.selection[0].y;
+        let ellipseSelectionY = selection[0].y;
         figma.ui.postMessage({ y: ellipseSelectionY });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "FRAME") {
-        var frameSelectionWidth = figma.currentPage.selection[0]
-            .width;
+    else if (selection.length > 0 && selection[0].type === "FRAME") {
+        let frameType = selection[0].type;
+        figma.ui.postMessage({ component: frameType });
+        let frameSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: frameSelectionWidth });
-        var frameSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let frameSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: frameSelectionHeight });
-        var frameSelectionX = figma.currentPage.selection[0].x;
+        let frameSelectionX = selection[0].x;
         figma.ui.postMessage({ x: frameSelectionX });
-        var frameSelectionY = figma.currentPage.selection[0].y;
+        let frameSelectionY = selection[0].y;
         figma.ui.postMessage({ y: frameSelectionY });
-        var paddingT = figma.currentPage.selection[0].paddingTop;
+        let paddingT = selection[0].paddingTop;
         figma.ui.postMessage({ paddingTop: paddingT });
-        var paddingB = figma.currentPage.selection[0].paddingBottom;
+        let paddingB = selection[0].paddingBottom;
         figma.ui.postMessage({ paddingBottom: paddingB });
-        var paddingL = figma.currentPage.selection[0].paddingLeft;
+        let paddingL = selection[0].paddingLeft;
         figma.ui.postMessage({ paddingLeft: paddingL });
-        var paddingR = figma.currentPage.selection[0].paddingRight;
+        let paddingR = selection[0].paddingRight;
         figma.ui.postMessage({ paddingRight: paddingR });
-        var itemSpacing = figma.currentPage.selection[0].itemSpacing;
+        let itemSpacing = selection[0].itemSpacing;
         figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "GROUP") {
-        var groupSelectionWidth = figma.currentPage.selection[0]
-            .width;
+    else if (selection.length > 0 && selection[0].type === "GROUP") {
+        let groupType = selection[0].type;
+        figma.ui.postMessage({ component: groupType });
+        let groupSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: groupSelectionWidth });
-        var groupSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let groupSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: groupSelectionHeight });
-        var groupSelectionX = figma.currentPage.selection[0].x;
+        let groupSelectionX = selection[0].x;
         figma.ui.postMessage({ x: groupSelectionX });
-        var groupSelectionY = figma.currentPage.selection[0].y;
+        let groupSelectionY = selection[0].y;
         figma.ui.postMessage({ y: groupSelectionY });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "INSTANCE") {
-        var instanceSelectionWidth = figma.currentPage
-            .selection[0].width;
+    else if (selection.length > 0 && selection[0].type === "INSTANCE") {
+        let inType = selection[0].type;
+        figma.ui.postMessage({ component: inType });
+        let instanceSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: instanceSelectionWidth });
-        var instanceSelectionHeight = figma.currentPage
-            .selection[0].height;
+        let instanceSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: instanceSelectionHeight });
-        var instanceSelectionRadius = figma.currentPage
-            .selection[0].cornerRadius;
+        let instanceSelectionRadius = selection[0].cornerRadius;
         figma.ui.postMessage({ cornerRadius: instanceSelectionRadius });
-        var instanceSelectionStroke = figma.currentPage
-            .selection[0].strokeWeight;
+        let instanceSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: instanceSelectionStroke });
-        var instanceSelectionX = figma.currentPage.selection[0].x;
+        let instanceSelectionX = selection[0].x;
         figma.ui.postMessage({ x: instanceSelectionX });
-        var instanceSelectionY = figma.currentPage.selection[0].y;
+        let instanceSelectionY = selection[0].y;
         figma.ui.postMessage({ y: instanceSelectionY });
-        var paddingT = figma.currentPage.selection[0].paddingTop;
+        let paddingT = selection[0].paddingTop;
         figma.ui.postMessage({ paddingTop: paddingT });
-        var paddingB = figma.currentPage.selection[0]
-            .paddingBottom;
+        let paddingB = selection[0].paddingBottom;
         figma.ui.postMessage({ paddingBottom: paddingB });
-        var paddingL = figma.currentPage.selection[0].paddingLeft;
+        let paddingL = selection[0].paddingLeft;
         figma.ui.postMessage({ paddingLeft: paddingL });
-        var paddingR = figma.currentPage.selection[0]
-            .paddingRight;
+        let paddingR = selection[0].paddingRight;
         figma.ui.postMessage({ paddingRight: paddingR });
-        var itemSpacing = figma.currentPage.selection[0]
-            .itemSpacing;
+        let itemSpacing = selection[0].itemSpacing;
         figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
-    else if ((figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "COMPONENT") ||
+    else if ((selection.length > 0 && selection[0].type === "COMPONENT") ||
         "COMPONENT_SET") {
-        var componentSelectionWidth = figma.currentPage
-            .selection[0].width;
+        let comType = selection[0].type;
+        figma.ui.postMessage({ component: comType });
+        let componentSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: componentSelectionWidth });
-        var componentSelectionHeight = figma.currentPage
-            .selection[0].height;
+        let componentSelectionHeight = selection[0].height;
         figma.ui.postMessage({ width: componentSelectionHeight });
-        var componentSelectionRadius = figma.currentPage
-            .selection[0].cornerRadius;
+        let componentSelectionRadius = selection[0].cornerRadius;
         figma.ui.postMessage({ cornerRadius: componentSelectionRadius });
-        var componentSelectionStroke = figma.currentPage
-            .selection[0].strokeWeight;
+        let componentSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: componentSelectionStroke });
-        var componentSelectionX = figma.currentPage.selection[0]
-            .x;
+        let componentSelectionX = selection[0].x;
         figma.ui.postMessage({ x: componentSelectionX });
-        var componentSelectionY = figma.currentPage.selection[0]
-            .y;
+        let componentSelectionY = selection[0].y;
         figma.ui.postMessage({ y: componentSelectionY });
-        var paddingT = figma.currentPage.selection[0].paddingTop;
+        let paddingT = selection[0].paddingTop;
         figma.ui.postMessage({ paddingTop: paddingT });
-        var paddingB = figma.currentPage.selection[0]
-            .paddingBottom;
+        let paddingB = selection[0].paddingBottom;
         figma.ui.postMessage({ paddingBottom: paddingB });
-        var paddingL = figma.currentPage.selection[0]
-            .paddingLeft;
+        let paddingL = selection[0].paddingLeft;
         figma.ui.postMessage({ paddingLeft: paddingL });
-        var paddingR = figma.currentPage.selection[0]
-            .paddingRight;
+        let paddingR = selection[0].paddingRight;
         figma.ui.postMessage({ paddingRight: paddingR });
-        var itemSpacing = figma.currentPage.selection[0]
-            .itemSpacing;
+        let itemSpacing = selection[0].itemSpacing;
         figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "VECTOR") {
-        var vectorSelectionWidth = figma.currentPage.selection[0]
-            .width;
+    else if (selection.length > 0 && selection[0].type === "VECTOR") {
+        let vecType = selection[0].type;
+        figma.ui.postMessage({ component: vecType });
+        let vectorSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: vectorSelectionWidth });
-        var vectorSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let vectorSelectionHeight = selection[0].height;
         figma.ui.postMessage({ width: vectorSelectionHeight });
-        var vectorSelectionStroke = figma.currentPage.selection[0]
-            .strokeWeight;
+        let vectorSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: vectorSelectionStroke });
-        var vectorSelectionX = figma.currentPage.selection[0].x;
+        let vectorSelectionX = selection[0].x;
         figma.ui.postMessage({ x: vectorSelectionX });
-        var vectorSelectionY = figma.currentPage.selection[0].y;
+        let vectorSelectionY = selection[0].y;
         figma.ui.postMessage({ y: vectorSelectionY });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "STAR") {
-        var starSelectionWidth = figma.currentPage.selection[0].width;
+    else if (selection.length > 0 && selection[0].type === "STAR") {
+        let starType = selection[0].type;
+        figma.ui.postMessage({ component: starType });
+        let starSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: starSelectionWidth });
-        var starSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let starSelectionHeight = selection[0].height;
         figma.ui.postMessage({ width: starSelectionHeight });
-        var starSelectionRadius = figma.currentPage.selection[0]
-            .cornerRadius;
+        let starSelectionRadius = selection[0].cornerRadius;
         figma.ui.postMessage({ cornerRadius: starSelectionRadius });
-        var starSelectionStroke = figma.currentPage.selection[0]
-            .strokeWeight;
+        let starSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: starSelectionStroke });
-        var starSelectionX = figma.currentPage.selection[0].x;
+        let starSelectionX = selection[0].x;
         figma.ui.postMessage({ x: starSelectionX });
-        var starSelectionY = figma.currentPage.selection[0].y;
+        let starSelectionY = selection[0].y;
         figma.ui.postMessage({ y: starSelectionY });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "LINE") {
-        var lineSelectionWidth = figma.currentPage.selection[0].width;
+    else if (selection.length > 0 && selection[0].type === "LINE") {
+        let lineType = selection[0].type;
+        figma.ui.postMessage({ component: lineType });
+        let lineSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: lineSelectionWidth });
-        var lineSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let lineSelectionHeight = selection[0].height;
         figma.ui.postMessage({ width: lineSelectionHeight });
-        var lineSelectionStroke = figma.currentPage.selection[0]
-            .strokeWeight;
+        let lineSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: lineSelectionStroke });
-        var lineSelectionX = figma.currentPage.selection[0].x;
+        let lineSelectionX = selection[0].x;
         figma.ui.postMessage({ x: lineSelectionX });
-        var lineSelectionY = figma.currentPage.selection[0].y;
+        let lineSelectionY = selection[0].y;
         figma.ui.postMessage({ y: lineSelectionY });
     }
-    else if (figma.currentPage.selection.length > 0 &&
-        figma.currentPage.selection[0].type === "POLYGON") {
-        var polygonSelectionWidth = figma.currentPage.selection[0]
-            .width;
+    else if (selection.length > 0 && selection[0].type === "POLYGON") {
+        let polyType = selection[0].type;
+        figma.ui.postMessage({ component: polyType });
+        let polygonSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: polygonSelectionWidth });
-        var polygonSelectionHeight = figma.currentPage.selection[0]
-            .height;
+        let polygonSelectionHeight = selection[0].height;
         figma.ui.postMessage({ width: polygonSelectionHeight });
-        var polygonSelectionRadius = figma.currentPage.selection[0]
-            .cornerRadius;
+        let polygonSelectionRadius = selection[0].cornerRadius;
         figma.ui.postMessage({ cornerRadius: polygonSelectionRadius });
-        var polygonSelectionStroke = figma.currentPage.selection[0]
-            .strokeWeight;
+        let polygonSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: polygonSelectionStroke });
-        var polygonSelectionX = figma.currentPage.selection[0].x;
+        let polygonSelectionX = selection[0].x;
         figma.ui.postMessage({ x: polygonSelectionX });
-        var polygonSelectionY = figma.currentPage.selection[0].y;
+        let polygonSelectionY = selection[0].y;
         figma.ui.postMessage({ y: polygonSelectionY });
     }
-    return;
 }
 figma.on("selectionchange", () => {
     if (figma.currentPage.selection.length === 0) {
@@ -246,6 +218,7 @@ figma.on("selectionchange", () => {
     }
     else {
         makeSelection();
+        figma.notify("Selection values updated");
     }
 });
 figma.ui.onmessage = () => {
