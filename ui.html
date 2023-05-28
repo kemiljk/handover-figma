@@ -512,7 +512,7 @@
     const stroke = document.getElementById('strokePx');
     const sResult = pxToRem(stroke.value);
     if (sResult() !== 0) {
-      json['stroke-width'] = sResult().toFixed(2);
+      json['border-width'] = sResult().toFixed(2);
     }
 
     const x = document.getElementById('xPx');
@@ -616,7 +616,7 @@
     const stroke = document.getElementById('strokePx');
     const sResult = pxToRem(stroke.value);
     if (sResult() !== 0) {
-      css['stroke-width'] = sResult().toFixed(2) + 'rem';
+      css['border-width'] = sResult().toFixed(2) + 'rem';
     }
 
     const x = document.getElementById('xPx');
