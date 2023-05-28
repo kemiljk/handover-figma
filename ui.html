@@ -29,9 +29,28 @@
       </div>
     </div>
   </div>
-  <div class="flex mx-auto w-full px-4 z-0 pt-24">
-    <span class="component" id="component">Set
-      selection</span>
+  <div class="flex mx-auto w-full items-center justify-between px-4 z-0 pt-24">
+    <span class="component" id="component">EMPTY</span>
+    <div class="flex justify-end w-max space-x-2">
+      <button id="json"
+        class="flex items-center export text-center text-xs py-2 px-4 w-fit rounded-lg focus:outline-none"
+        onclick="createJSON()">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" class="icon" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M15.0001 2.09998C15.4972 2.09998 15.9001 2.50292 15.9001 2.99998V16.8272L20.3638 12.3636C20.7152 12.0121 21.285 12.0121 21.6364 12.3636C21.988 12.7151 21.988 13.2849 21.6364 13.6364L15.6365 19.6364C15.285 19.9878 14.7152 19.9878 14.3637 19.6364L8.3637 13.6364C8.01222 13.2849 8.01222 12.7151 8.3637 12.3636C8.71518 12.0121 9.28502 12.0121 9.6365 12.3636L14.1001 16.8272V2.99998C14.1001 2.50292 14.503 2.09998 15.0001 2.09998ZM5 20C5.55228 20 6 20.4478 6 21V24C6 25.1078 6.8913 26 7.9927 26H22.0024C23.1058 26 24 25.1056 24 24V21C24 20.4478 24.4478 20 25 20C25.5522 20 26 20.4478 26 21V24C26 26.2082 24.2124 28 22.0024 28H7.9927C5.78038 28 4 26.206 4 24V21C4 20.4478 4.44772 20 5 20Z"
+            fill="currentColor" />
+        </svg>
+        JSON</button>
+      <button id="css"
+        class="flex items-center export text-center text-xs py-2 px-4 w-fit rounded-lg focus:outline-none"
+        onclick="createCSS()">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" class="icon" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M15.0001 2.09998C15.4972 2.09998 15.9001 2.50292 15.9001 2.99998V16.8272L20.3638 12.3636C20.7152 12.0121 21.285 12.0121 21.6364 12.3636C21.988 12.7151 21.988 13.2849 21.6364 13.6364L15.6365 19.6364C15.285 19.9878 14.7152 19.9878 14.3637 19.6364L8.3637 13.6364C8.01222 13.2849 8.01222 12.7151 8.3637 12.3636C8.71518 12.0121 9.28502 12.0121 9.6365 12.3636L14.1001 16.8272V2.99998C14.1001 2.50292 14.503 2.09998 15.0001 2.09998ZM5 20C5.55228 20 6 20.4478 6 21V24C6 25.1078 6.8913 26 7.9927 26H22.0024C23.1058 26 24 25.1056 24 24V21C24 20.4478 24.4478 20 25 20C25.5522 20 26 20.4478 26 21V24C26 26.2082 24.2124 28 22.0024 28H7.9927C5.78038 28 4 26.206 4 24V21C4 20.4478 4.44772 20 5 20Z"
+            fill="currentColor" />
+        </svg>
+        CSS</button>
+    </div>
   </div>
   <div class="overflow-y-auto pt-4">
     <div class="flex flex-col mx-auto w-full px-4 pb-24">
@@ -253,9 +272,13 @@
   );
 
   let resultArray = [];
+  let pluginData = {};
+  let json = {};
   var textResult, lHResult, LSResult, wResult, hResult, rResult, sResult, xResult, yResult, pTResult, pBResult, pLResult, pRResult, iSResult
 
   onmessage = (event) => {
+    pluginData = event.data.pluginMessage;
+
     if (event.data.pluginMessage.fontSize) {
       document.getElementById('textPx').value = event.data.pluginMessage.fontSize.toFixed(0);
     }
@@ -447,6 +470,216 @@
     })
   }
 
+  function createJSON() {
+    const json = {};
+
+    const text = document.getElementById('textPx');
+    const textResult = pxToRem(text.value);
+    if (textResult() !== 0) {
+      json['font-size'] = textResult().toFixed(2);
+    }
+
+    const lineHeight = document.getElementById('lineHeightPx');
+    const lHResult = pxToRem(lineHeight.value);
+    if (lHResult() !== 0) {
+      json['line-height'] = lHResult === 'AUTO' ? 'AUTO' : lHResult().toFixed(2);
+    }
+
+    const letterSpacing = document.getElementById('letterSpacingPx');
+    const LSResult = pxToRem(letterSpacing.value);
+    if (LSResult() !== 0) {
+      json['letter-spacing'] = LSResult().toFixed(2);
+    }
+
+    const width = document.getElementById('widthPx');
+    const wResult = pxToRem(width.value);
+    if (wResult() !== 0) {
+      json['width'] = wResult().toFixed(2);
+    }
+
+    const height = document.getElementById('heightPx');
+    const hResult = pxToRem(height.value);
+    if (hResult() !== 0) {
+      json['height'] = hResult().toFixed(2);
+    }
+
+    const radius = document.getElementById('radiusPx');
+    const rResult = pxToRem(radius.value);
+    if (rResult() !== 0) {
+      json['border-radius'] = rResult().toFixed(2);
+    }
+
+    const stroke = document.getElementById('strokePx');
+    const sResult = pxToRem(stroke.value);
+    if (sResult() !== 0) {
+      json['stroke-width'] = sResult().toFixed(2);
+    }
+
+    const x = document.getElementById('xPx');
+    const xResult = pxToRem(x.value);
+    if (xResult() !== 0) {
+      json['x position'] = xResult().toFixed(2);
+    }
+
+    const y = document.getElementById('yPx');
+    const yResult = pxToRem(y.value);
+    if (yResult() !== 0) {
+      json['y position'] = yResult().toFixed(2);
+    }
+
+    const paddingT = document.getElementById('paddingTPx');
+    const pTResult = pxToRem(paddingT.value);
+    if (pTResult() !== 0) {
+      json['padding-top'] = pTResult().toFixed(2);
+    }
+
+    const paddingB = document.getElementById('paddingBPx');
+    const pBResult = pxToRem(paddingB.value);
+    if (pBResult() !== 0) {
+      json['padding-bottom'] = pBResult().toFixed(2);
+    }
+
+    const paddingL = document.getElementById('paddingLPx');
+    const pLResult = pxToRem(paddingL.value);
+    if (pLResult() !== 0) {
+      json['padding-left'] = pLResult().toFixed(2);
+    }
+
+    const paddingR = document.getElementById('paddingRPx');
+    const pRResult = pxToRem(paddingR.value);
+    if (pRResult() !== 0) {
+      json['padding-right'] = pRResult().toFixed(2);
+    }
+
+    const itemSpacing = document.getElementById('itemSpacingPx');
+    const iSResult = pxToRem(itemSpacing.value);
+    if (iSResult() !== 0) {
+      json['item-spacing'] = iSResult().toFixed(2);
+    }
+
+    console.log(json);
+
+    // Convert the object to a JSON string
+    const jsonString = JSON.stringify(json);
+
+    // Create a blob from the JSON string and download it as a file
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'handover-export.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function createCSS() {
+    const css = {};
+
+    const text = document.getElementById('textPx');
+    const textResult = pxToRem(text.value);
+    if (textResult() !== 0) {
+      css['font-size'] = textResult().toFixed(2) + 'rem';
+    }
+
+    const lineHeight = document.getElementById('lineHeightPx');
+    const lHResult = pxToRem(lineHeight.value);
+    if (lHResult() !== 0) {
+      css['line-height'] = lHResult === 'AUTO' ? 'AUTO' : lHResult().toFixed(2) + 'rem';
+    }
+
+    const letterSpacing = document.getElementById('letterSpacingPx');
+    const LSResult = pxToRem(letterSpacing.value);
+    if (LSResult() !== 0) {
+      css['letter-spacing'] = LSResult().toFixed(2) + 'rem';
+    }
+
+    const width = document.getElementById('widthPx');
+    const wResult = pxToRem(width.value);
+    if (wResult() !== 0) {
+      css['width'] = wResult().toFixed(2) + 'rem';
+    }
+
+    const height = document.getElementById('heightPx');
+    const hResult = pxToRem(height.value);
+    if (hResult() !== 0) {
+      css['height'] = hResult().toFixed(2) + 'rem';
+    }
+
+    const radius = document.getElementById('radiusPx');
+    const rResult = pxToRem(radius.value);
+    if (rResult() !== 0) {
+      css['border-radius'] = rResult().toFixed(2) + 'rem';
+    }
+
+    const stroke = document.getElementById('strokePx');
+    const sResult = pxToRem(stroke.value);
+    if (sResult() !== 0) {
+      css['stroke-width'] = sResult().toFixed(2) + 'rem';
+    }
+
+    const x = document.getElementById('xPx');
+    const xResult = pxToRem(x.value);
+    if (xResult() !== 0) {
+      css['transform'] = `translateX(${xResult().toFixed(2)}rem)`;
+    }
+
+    const y = document.getElementById('yPx');
+    const yResult = pxToRem(y.value);
+    if (yResult() !== 0) {
+      css['transform'] += ` translateY(${yResult().toFixed(2)}rem)`;
+    }
+
+    const paddingT = document.getElementById('paddingTPx');
+    const pTResult = pxToRem(paddingT.value);
+    if (pTResult() !== 0) {
+      css['padding-top'] = pTResult().toFixed(2) + 'rem';
+    }
+
+    const paddingB = document.getElementById('paddingBPx');
+    const pBResult = pxToRem(paddingB.value);
+    if (pBResult() !== 0) {
+      css['padding-bottom'] = pBResult().toFixed(2) + 'rem';
+    }
+
+    const paddingL = document.getElementById('paddingLPx');
+    const pLResult = pxToRem(paddingL.value);
+    if (pLResult() !== 0) {
+      css['padding-left'] = pLResult().toFixed(2) + 'rem';
+    }
+
+    const paddingR = document.getElementById('paddingRPx');
+    const pRResult = pxToRem(paddingR.value);
+    if (pRResult() !== 0) {
+      css['padding-right'] = pRResult().toFixed(2) + 'rem';
+    }
+
+    const itemSpacing = document.getElementById('itemSpacingPx');
+    const iSResult = pxToRem(itemSpacing.value);
+    if (iSResult() !== 0) {
+      css['grid-gap'] = iSResult().toFixed(2) + 'rem';
+    }
+
+    let cssString = '';
+    for (const prop in css) {
+      cssString += `${prop}: ${css[prop]};\n`;
+    }
+
+    console.log(cssString);
+
+    // Create a blob from the CSS string and download it as a file
+    const blob = new Blob([cssString], { type: 'text/css' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'handover-export.css';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
   function pxToRem(px) {
     var baseValue = document.getElementById('newPx').value;
     var scale = document.getElementById('scale').value;
@@ -478,13 +711,22 @@
     background-color: var(--figma-color-bg);
     border: 1px solid var(--figma-color-border);
     color: var(--figma-color-text);
-    cursor: pointer;
+    cursor: default;
     font-size: 1rem;
+
+    &:hover {
+      background-color: var(--figma-color-bg-selected-hover);
+      border: 1px solid var(--figma-color-border-selected);
+    }
   }
 
-  button:hover {
-    background-color: var(--figma-color-bg-selected-hover);
-    border: 1px solid var(--figma-color-border-selected);
+  button.export {
+    background-color: var(--figma-color-bg-secondary);
+
+    &:hover {
+      background-color: var(--figma-color-bg-secondary-hover);
+      border: 1px solid var(--figma-color-border-strong);
+    }
   }
 
   h3 {
@@ -533,12 +775,18 @@
   }
 
   span.component {
-    margin-top: 0.5rem;
     color: var(--figma-color-text-success);
     font-size: 0.8rem;
     border-radius: 999px;
     padding: 0.3rem 0.8rem;
     background-color: var(--figma-color-bg-success), 0.5;
     border: 1px solid var(--figma-color-border-onsuccess);
+  }
+
+  svg.icon {
+    fill: var(--figma-color-text-secondary);
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.25rem;
   }
 </style>
