@@ -1,10 +1,10 @@
-figma.showUI(__html__, { width: 500, height: 800 });
+figma.showUI(__html__, { themeColors: true, width: 300, height: 600 });
 if (figma.currentPage.selection.length === 0) {
-    figma.notify("Select an object to get the selection value.");
+    figma.notify('Select an object to get the selection value.');
 }
 async function makeSelection() {
     const { selection } = figma.currentPage;
-    if (selection.length > 0 && selection[0].type === "TEXT") {
+    if (selection.length > 0 && selection[0].type === 'TEXT') {
         let textType = selection[0].type;
         figma.ui.postMessage({ component: textType });
         let textSelection = selection[0].fontSize;
@@ -19,16 +19,15 @@ async function makeSelection() {
         figma.ui.postMessage({ x: textSelectionX });
         let textSelectionY = selection[0].y;
         figma.ui.postMessage({ y: textSelectionY });
-        let textSelectionLineHeight = selection[0].getRangeLineHeight(0, selection[0].characters.length);
-        figma.ui.postMessage({ lineHeight: textSelectionLineHeight.value });
-        let textSelectionLetterSpacing = selection[0].getRangeLetterSpacing(0, selection[0].characters.length);
-        figma.ui.postMessage({ letterSpacing: textSelectionLetterSpacing.value });
+        let textSelectionLineHeight = selection[0].getRangeLineHeight(0, selection[0].characters.length).value;
+        figma.ui.postMessage({ lineHeight: textSelectionLineHeight });
+        let textSelectionLetterSpacing = selection[0].getRangeLetterSpacing(0, selection[0].characters.length).value;
+        figma.ui.postMessage({ letterSpacing: textSelectionLetterSpacing });
     }
-    else if (selection.length > 0 && selection[0].type === "RECTANGLE") {
+    else if (selection.length > 0 && selection[0].type === 'RECTANGLE') {
         let rectType = selection[0].type;
         figma.ui.postMessage({ component: rectType });
-        let rectSelectionWidth = figma.currentPage.selection[0]
-            .width;
+        let rectSelectionWidth = figma.currentPage.selection[0].width;
         figma.ui.postMessage({ width: rectSelectionWidth });
         let rectSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: rectSelectionHeight });
@@ -41,21 +40,18 @@ async function makeSelection() {
         let rectangleSelectionY = selection[0].y;
         figma.ui.postMessage({ y: rectangleSelectionY });
     }
-    else if (selection.length > 0 && selection[0].type === "ELLIPSE") {
+    else if (selection.length > 0 && selection[0].type === 'ELLIPSE') {
         let ellType = selection[0].type;
         figma.ui.postMessage({ component: ellType });
         let ellipseSelectionWidth = selection[0].width;
         figma.ui.postMessage({ width: ellipseSelectionWidth });
         let ellipseSelectionHeight = selection[0].height;
         figma.ui.postMessage({ height: ellipseSelectionHeight });
-        let ellipseSelectionArcStart = selection[0].arcData
-            .startingAngle;
+        let ellipseSelectionArcStart = selection[0].arcData.startingAngle;
         figma.ui.postMessage({ startingAngle: ellipseSelectionArcStart });
-        let ellipseSelectionArcEnd = selection[0].arcData
-            .endingAngle;
+        let ellipseSelectionArcEnd = selection[0].arcData.endingAngle;
         figma.ui.postMessage({ endingAngle: ellipseSelectionArcEnd });
-        let ellipseSelectionArcInnerRadius = selection[0].arcData
-            .innerRadius;
+        let ellipseSelectionArcInnerRadius = selection[0].arcData.innerRadius;
         figma.ui.postMessage({ innerRadius: ellipseSelectionArcInnerRadius });
         let ellipseSelectionStroke = selection[0].strokeWeight;
         figma.ui.postMessage({ strokeWeight: ellipseSelectionStroke });
@@ -64,7 +60,7 @@ async function makeSelection() {
         let ellipseSelectionY = selection[0].y;
         figma.ui.postMessage({ y: ellipseSelectionY });
     }
-    else if (selection.length > 0 && selection[0].type === "FRAME") {
+    else if (selection.length > 0 && selection[0].type === 'FRAME') {
         let frameType = selection[0].type;
         figma.ui.postMessage({ component: frameType });
         let frameSelectionWidth = selection[0].width;
@@ -75,6 +71,8 @@ async function makeSelection() {
         figma.ui.postMessage({ x: frameSelectionX });
         let frameSelectionY = selection[0].y;
         figma.ui.postMessage({ y: frameSelectionY });
+        let frameSelectionRadius = selection[0].cornerRadius;
+        figma.ui.postMessage({ cornerRadius: frameSelectionRadius });
         let paddingT = selection[0].paddingTop;
         figma.ui.postMessage({ paddingTop: paddingT });
         let paddingB = selection[0].paddingBottom;
@@ -86,7 +84,7 @@ async function makeSelection() {
         let itemSpacing = selection[0].itemSpacing;
         figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
-    else if (selection.length > 0 && selection[0].type === "GROUP") {
+    else if (selection.length > 0 && selection[0].type === 'GROUP') {
         let groupType = selection[0].type;
         figma.ui.postMessage({ component: groupType });
         let groupSelectionWidth = selection[0].width;
@@ -98,7 +96,7 @@ async function makeSelection() {
         let groupSelectionY = selection[0].y;
         figma.ui.postMessage({ y: groupSelectionY });
     }
-    else if (selection.length > 0 && selection[0].type === "INSTANCE") {
+    else if (selection.length > 0 && selection[0].type === 'INSTANCE') {
         let inType = selection[0].type;
         figma.ui.postMessage({ component: inType });
         let instanceSelectionWidth = selection[0].width;
@@ -124,8 +122,7 @@ async function makeSelection() {
         let itemSpacing = selection[0].itemSpacing;
         figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
-    else if ((selection.length > 0 && selection[0].type === "COMPONENT") ||
-        "COMPONENT_SET") {
+    else if ((selection.length > 0 && selection[0].type === 'COMPONENT') || 'COMPONENT_SET') {
         let comType = selection[0].type;
         figma.ui.postMessage({ component: comType });
         let componentSelectionWidth = selection[0].width;
@@ -151,7 +148,7 @@ async function makeSelection() {
         let itemSpacing = selection[0].itemSpacing;
         figma.ui.postMessage({ itemSpacing: itemSpacing });
     }
-    else if (selection.length > 0 && selection[0].type === "VECTOR") {
+    else if (selection.length > 0 && selection[0].type === 'VECTOR') {
         let vecType = selection[0].type;
         figma.ui.postMessage({ component: vecType });
         let vectorSelectionWidth = selection[0].width;
@@ -165,7 +162,7 @@ async function makeSelection() {
         let vectorSelectionY = selection[0].y;
         figma.ui.postMessage({ y: vectorSelectionY });
     }
-    else if (selection.length > 0 && selection[0].type === "STAR") {
+    else if (selection.length > 0 && selection[0].type === 'STAR') {
         let starType = selection[0].type;
         figma.ui.postMessage({ component: starType });
         let starSelectionWidth = selection[0].width;
@@ -181,7 +178,7 @@ async function makeSelection() {
         let starSelectionY = selection[0].y;
         figma.ui.postMessage({ y: starSelectionY });
     }
-    else if (selection.length > 0 && selection[0].type === "LINE") {
+    else if (selection.length > 0 && selection[0].type === 'LINE') {
         let lineType = selection[0].type;
         figma.ui.postMessage({ component: lineType });
         let lineSelectionWidth = selection[0].width;
@@ -195,7 +192,7 @@ async function makeSelection() {
         let lineSelectionY = selection[0].y;
         figma.ui.postMessage({ y: lineSelectionY });
     }
-    else if (selection.length > 0 && selection[0].type === "POLYGON") {
+    else if (selection.length > 0 && selection[0].type === 'POLYGON') {
         let polyType = selection[0].type;
         figma.ui.postMessage({ component: polyType });
         let polygonSelectionWidth = selection[0].width;
@@ -211,15 +208,20 @@ async function makeSelection() {
         let polygonSelectionY = selection[0].y;
         figma.ui.postMessage({ y: polygonSelectionY });
     }
+    if (selection.length > 1 && selection.every((s) => s.type === selection[0].type)) {
+        figma.ui.postMessage({ component: selection[0].type });
+    }
+    else if (selection.length > 1 && !selection.every((s) => s.type === selection[0].type)) {
+        figma.ui.postMessage({ component: 'MIXED' });
+    }
 }
-figma.on("selectionchange", () => {
-    if (figma.currentPage.selection.length === 0) {
-        figma.notify("Select an object to get the selection value.");
-    }
-    else {
-        makeSelection();
-        figma.notify("Selection values updated");
-    }
+figma.on('run', () => {
+    makeSelection();
+    figma.notify('Selection values updated');
+});
+figma.on('selectionchange', () => {
+    makeSelection();
+    figma.notify('Selection values updated');
 });
 figma.ui.onmessage = () => {
     figma.closePlugin();

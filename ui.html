@@ -3,16 +3,18 @@
 </head>
 
 <body style="display: none">
-  <div class="fixed mx-auto bg-white w-full pt-2 pb-4 px-4 border-b-2 border-gray-200">
-    <div class="flex mx-auto">
+  <div class="container-top fixed mx-auto z-1 w-full pt-2 pb-4 px-4 border-b-2 border-gray-200">
+    <div class="flex w-full mx-auto space-x-2">
       <div class="flex flex-col w-1/4">
-        <h5 class="pb-2 font-bold text-base">Base px</h5>
-        <input class="w-24 py-2.5 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" type="number" id="newPx" value="16">
+        <h5 class="pb-2 font-bold text-xs">Base px</h5>
+        <input class="w-full py-2 p-2 text-xs border-2  rounded-lg focus:outline-none" type="number" id="newPx"
+          value="16">
       </div>
       <div class="flex flex-col w-3/4">
-        <h5 class="pb-2 font-bold text-base">Scale</h5>
+        <h5 class="pb-2 font-bold text-xs">Scale</h5>
         <div class="relative">
-          <select name="conversionScale" id="scale" class="w-full py-2.5 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg  focus:outline-none focus:ring focus:ring-gray-400 focus:border-white">
+          <select name="conversionScale" id="scale"
+            class="w-full py-2 px-2 text-xs border-2  rounded-lg  focus:outline-none">
             <option value="1.000" selected>Browser default (1.000)</option>
             <option value="1.067">Minor second (1.067)</option>
             <option value="1.125">Major second (1.125)</option>
@@ -27,127 +29,221 @@
       </div>
     </div>
   </div>
-  <div class="flex mx-auto w-full px-4 overflow-y-auto pt-28">
-    <span class="mt-2 py-2 px-4 rounded-full bg-green-50 border border-green-300 text-green-800" id="component">Set selection</span></h3>
+  <div class="flex mx-auto w-full px-4 z-0 pt-24">
+    <span class="component" id="component">Set
+      selection</span>
   </div>
-  <div class="flex mx-auto w-full px-4 pb-24">
-  <div class="w-2/3 space-y-2">
-    <h3 class="pb-2 pt-4 font-bold text-base">Selections (pixels)</h3>
-    <form id="resetPx">
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="textPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Text</h4>
+  <div class="overflow-y-auto pt-4">
+    <div class="flex flex-col mx-auto w-full px-4 pb-24">
+      <div class="flex w-full">
+        <form id="resetPx" class="w-full space-y-2">
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">X position</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="xPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="xResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Y position</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="yPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="yResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Width</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="widthPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="widthResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Height</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="heightPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="heightResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Corner radius</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="radiusPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="radiusResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Item spacing</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="itemSpacingPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="itemSpacingResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Padding top</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="paddingTPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="paddingTResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Padding right</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="paddingRPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="paddingRResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Padding bottom</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="paddingBPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="paddingBResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Padding left</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="paddingLPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="paddingLResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Stroke weight</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="strokePx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="strokeResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Text</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="textPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="textResult" class="w-full leading-none text-lg font-bold font-mono ">0.00</span><span
+                class="w-max leading-none text-lg font-bold font-mono">rem</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Line-height</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="lineHeightPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="lineHeightResult" class="w-full leading-none text-lg font-bold font-mono ">AUTO</span>
+            </div>
+          </div>
+          <div class="flex w-full items-end justify-between">
+            <div class="flex flex-col items-start justify-center">
+              <h4 class="font-medium text-sm">Letter-spacing</h4>
+              <div class="flex items-end space-x-2">
+                <input type="number" class="w-20 py-2 p-2 text-sm font-medium border-2  rounded-lg focus:outline-none"
+                  id="letterSpacingPx" value="0">
+                <span class="px">px</span>
+              </div>
+            </div>
+            <div class="flex">
+              <span id="letterSpacingResult" class="w-full leading-none text-lg font-bold font-mono">AUTO</span>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="lineHeightPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Line-height</h4>
+      <div class="container-bottom w-full fixed z-1 p-4 bottom-0 left-0 right-0 mx-auto flex justify-center">
+        <div class="flex justify-center w-full space-x-4">
+          <button id="convert"
+            class="text-center text-sm font-bold py-2 px-4 w-fit rounded-lg focus:outline-none">Update
+            conversion</button>
+          <button id="reset"
+            class="text-center text-sm font-bold py-2 px-4 w-fit rounded-lg focus:outline-none">Reset</button>
+        </div>
       </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="letterSpacingPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Letter-spacing</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="widthPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Width</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="heightPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Height</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="radiusPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Border Radius</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="strokePx" value="0">
-        <h4 class="pl-4 font-medium text-base">Stroke Weight</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="xPx" value="0">
-        <h4 class="pl-4 font-medium text-base">X position</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="yPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Y position</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="paddingTPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Top padding</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="paddingBPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Bottom padding</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="paddingLPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Left padding</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="paddingRPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Right padding</h4>
-      </div>
-      <div class="flex pr-2 w-full items-center pb-4">
-        <input type="number" class="w-24 py-2 pl-4 pr-2 text-sm font-medium border-2 border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-400 focus:border-white" id="itemSpacingPx" value="0">
-        <h4 class="pl-4 font-medium text-base">Item spacing</h4>
-      </div>
-    </form>
-  </div>
-  <div class="w-1/3">
-    <h3 class="pb-2 pt-4 font-bold text-base">Result (rem)</h3>
-    <form id="resetRem">
-      <div class="flex w-full items-center pb-3.5">
-        <span id="textResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="lineHeightResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="letterSpacingResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="widthResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="heightResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="radiusResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="strokeResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="xResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-2">
-        <span id="yResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-2.5">
-        <span id="paddingTResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="paddingBResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="paddingLResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center pb-3.5">
-        <span id="paddingRResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-      <div class="flex w-full items-center">
-        <span id="itemSpacingResult" class="w-full py-2 text-xl font-bold font-mono text-green-600">0.00</span>
-      </div>
-    </form>
     </div>
   </div>
-  <div class="fixed bg-white py-4 bottom-0 left-0 right-0 mx-auto flex justify-center">
-    <div class="flex justify-center w-full space-x-4">
-      <!-- <button id="copy" class="text-center text-white font-bold bg-green-600 py-2 w-32 rounded-lg focus:outline-none focus:ring focus:ring-green-500 hover:bg-green-700">Copy</button> -->
-      <button id="convert" class="text-center text-white font-bold bg-green-600 py-2 w-32 rounded-lg focus:outline-none focus:ring focus:ring-green-500 hover:bg-green-700">Convert</button>
-      <button id="reset" class="text-center text-gray-700 font-bold bg-gray-200 py-2 w-32 rounded-lg focus:outline-none focus:ring focus:ring-gray-300">Reset</button>
-    </div>
-  </div>
-</div>
 </body>
 
 <script>
@@ -204,154 +300,133 @@
     }
     if (event.data.pluginMessage.component) {
       document.getElementById('component').innerHTML = event.data.pluginMessage.component;
+      console.log(event.data.pluginMessage.component)
     }
 
     document.getElementById('convert').onclick = () => {
-        const text = document.getElementById('textPx');
-        var result = pxToRem(text.value);
-        document.getElementById('textResult').innerHTML = (result().toFixed(2)
+      const text = document.getElementById('textPx');
+      var result = pxToRem(text.value);
+      document.getElementById('textResult').innerHTML = (result().toFixed(2)
         || 0);
 
 
-        const lineHeight = document.getElementById('lineHeightPx');
-        var result = pxToRem(lineHeight.value);
-        document.getElementById('lineHeightResult').innerHTML = (result().toFixed(2)
-        || 0);
-        
-        const letterSpacing = document.getElementById('letterSpacingPx');
-        var result = pxToRem(letterSpacing.value);
-        document.getElementById('letterSpacingResult').innerHTML = (result().toFixed(2)
-        || 0);
+      const lineHeight = document.getElementById('lineHeightPx');
+      var result = pxToRem(lineHeight.value);
+      document.getElementById('lineHeightResult').innerHTML = (result().toFixed(2) || 0);
 
-        const width = document.getElementById('widthPx');
-        var result = pxToRem(width.value);
-        document.getElementById('widthResult').innerHTML = (result().toFixed(2) || 0);
+      const letterSpacing = document.getElementById('letterSpacingPx');
+      var result = pxToRem(letterSpacing.value);
+      document.getElementById('letterSpacingResult').innerHTML = (result().toFixed(2) || 0);
 
-        const height = document.getElementById('heightPx');
-        var result = pxToRem(height.value);
-        document.getElementById('heightResult').innerHTML = (result().toFixed(2) || 0);
+      const width = document.getElementById('widthPx');
+      var result = pxToRem(width.value);
+      document.getElementById('widthResult').innerHTML = (result().toFixed(2) || 0);
 
-        const radius = document.getElementById('radiusPx');
-        var result = pxToRem(radius.value);
-        document.getElementById('radiusResult').innerHTML = (result().toFixed(2) || 0);
+      const height = document.getElementById('heightPx');
+      var result = pxToRem(height.value);
+      document.getElementById('heightResult').innerHTML = (result().toFixed(2) || 0);
 
-        const stroke = document.getElementById('strokePx');
-        var result = pxToRem(stroke.value);
-        document.getElementById('strokeResult').innerHTML = (result().toFixed(2) || 0);
+      const radius = document.getElementById('radiusPx');
+      var result = pxToRem(radius.value);
+      document.getElementById('radiusResult').innerHTML = (result().toFixed(2) || 0);
 
-        const x = document.getElementById('xPx');
-        var result = pxToRem(x.value);
-        document.getElementById('xResult').innerHTML = (result().toFixed(2) || 0);
+      const stroke = document.getElementById('strokePx');
+      var result = pxToRem(stroke.value);
+      document.getElementById('strokeResult').innerHTML = (result().toFixed(2) || 0);
 
-        const y = document.getElementById('yPx');
-        var result = pxToRem(y.value);
-        document.getElementById('yResult').innerHTML = (result().toFixed(2) || 0);
+      const x = document.getElementById('xPx');
+      var result = pxToRem(x.value);
+      document.getElementById('xResult').innerHTML = (result().toFixed(2) || 0);
 
-        const paddingT = document.getElementById('paddingTPx');
-        var result = pxToRem(paddingT.value);
-        document.getElementById('paddingTResult').innerHTML = (result().toFixed(2) || 0);
+      const y = document.getElementById('yPx');
+      var result = pxToRem(y.value);
+      document.getElementById('yResult').innerHTML = (result().toFixed(2) || 0);
 
-        const paddingB = document.getElementById('paddingBPx');
-        var result = pxToRem(paddingB.value);
-        document.getElementById('paddingBResult').innerHTML = (result().toFixed(2) || 0);
+      const paddingT = document.getElementById('paddingTPx');
+      var result = pxToRem(paddingT.value);
+      document.getElementById('paddingTResult').innerHTML = (result().toFixed(2) || 0);
 
-        const paddingL = document.getElementById('paddingLPx');
-        var result = pxToRem(paddingL.value);
-        document.getElementById('paddingLResult').innerHTML = (result().toFixed(2) || 0);
+      const paddingB = document.getElementById('paddingBPx');
+      var result = pxToRem(paddingB.value);
+      document.getElementById('paddingBResult').innerHTML = (result().toFixed(2) || 0);
 
-        const paddingR = document.getElementById('paddingRPx');
-        var result = pxToRem(paddingR.value);
-        document.getElementById('paddingRResult').innerHTML = (result().toFixed(2) || 0);
+      const paddingL = document.getElementById('paddingLPx');
+      var result = pxToRem(paddingL.value);
+      document.getElementById('paddingLResult').innerHTML = (result().toFixed(2) || 0);
 
-        const itemSpacing = document.getElementById('itemSpacingPx');
-        var result = pxToRem(itemSpacing.value);
-        document.getElementById('itemSpacingResult').innerHTML = (result().toFixed(2) || 0);
+      const paddingR = document.getElementById('paddingRPx');
+      var result = pxToRem(paddingR.value);
+      document.getElementById('paddingRResult').innerHTML = (result().toFixed(2) || 0);
+
+      const itemSpacing = document.getElementById('itemSpacingPx');
+      var result = pxToRem(itemSpacing.value);
+      document.getElementById('itemSpacingResult').innerHTML = (result().toFixed(2) || 0);
     }
 
-        const text = document.getElementById('textPx');
-        textResult = pxToRem(text.value);
-        document.getElementById('textResult').innerHTML = (textResult().toFixed(2)
-        || 0);
-        
-        const lineHeight = document.getElementById('lineHeightPx');
-        lHResult = pxToRem(lineHeight.value);
-        document.getElementById('lineHeightResult').innerHTML = (lHResult().toFixed(2)
-        || 0);
-        
-        const letterSpacing = document.getElementById('letterSpacingPx');
-        LSResult = pxToRem(letterSpacing.value);
-        document.getElementById('letterSpacingResult').innerHTML = (LSResult().toFixed(2)
-        || 0);
-        
-        const width = document.getElementById('widthPx');
-        wResult = pxToRem(width.value);
-        document.getElementById('widthResult').innerHTML = (wResult().toFixed(2) || 0);
-        
-        const height = document.getElementById('heightPx');
-        hResult = pxToRem(height.value);
-        document.getElementById('heightResult').innerHTML = (hResult().toFixed(2) || 0);
-        
-        const radius = document.getElementById('radiusPx');
-        rResult = pxToRem(radius.value);
-        document.getElementById('radiusResult').innerHTML = (rResult().toFixed(2) || 0);
-        
-        const stroke = document.getElementById('strokePx');
-        sResult = pxToRem(stroke.value);
-        document.getElementById('strokeResult').innerHTML = (sResult().toFixed(2) || 0);
-        
-        const x = document.getElementById('xPx');
-        xResult = pxToRem(x.value);
-        document.getElementById('xResult').innerHTML = (xResult().toFixed(2) || 0);
-        
-        const y = document.getElementById('yPx');
-        yResult = pxToRem(y.value);
-        document.getElementById('yResult').innerHTML = (yResult().toFixed(2) || 0);
-        
-        const paddingT = document.getElementById('paddingTPx');
-        pTResult = pxToRem(paddingT.value);
-        document.getElementById('paddingTResult').innerHTML = (pTResult().toFixed(2) || 0);
-        
-        const paddingB = document.getElementById('paddingBPx');
-        pBResult = pxToRem(paddingB.value);
-        document.getElementById('paddingBResult').innerHTML = (pBResult().toFixed(2) || 0);
-        
-        const paddingL = document.getElementById('paddingLPx');
-        pLResult = pxToRem(paddingL.value);
-        document.getElementById('paddingLResult').innerHTML = (pLResult().toFixed(2) || 0);
-        
-        const paddingR = document.getElementById('paddingRPx');
-        pRResult = pxToRem(paddingR.value);
-        document.getElementById('paddingRResult').innerHTML = (pRResult().toFixed(2) || 0);
-        
-        const itemSpacing = document.getElementById('itemSpacingPx');
-        iSResult = pxToRem(itemSpacing.value);
-        document.getElementById('itemSpacingResult').innerHTML = (iSResult().toFixed(2) || 0);
-        
-        // document.getElementById('copy').onclick = () => {
-        //   resultArray = []
-        //   resultArray.push({"name": "Text", "rem": textResult().toFixed(2)})
-        //   resultArray.push({"name": "Line-height", "rem": lHResult().toFixed(2)})
-        //   resultArray.push({"name": "Letter-spacing", "rem": LSResult().toFixed(2)})
-        //   resultArray.push({"name": "Width", "rem": wResult().toFixed(2)})
-        //   resultArray.push({"name": "Height", "rem": hResult().toFixed(2)})
-        //   resultArray.push({"name": "Radius", "rem": rResult().toFixed(2)})
-        //   resultArray.push({"name": "Stroke", "rem": sResult().toFixed(2)})
-        //   resultArray.push({"name": "X position", "rem": xResult().toFixed(2)})
-        //   resultArray.push({"name": "Y position", "rem": yResult().toFixed(2)})
-        //   resultArray.push({"name": "Padding top", "rem": pTResult().toFixed(2)})
-        //   resultArray.push({"name": "Padding left", "rem": pLResult().toFixed(2)})
-        //   resultArray.push({"name": "Padding bottom", "rem": pBResult().toFixed(2)})
-        //   resultArray.push({"name": "Padding right", "rem": pRResult().toFixed(2)})
-        //   resultArray.push({"name": "Item spacing", "rem": iSResult().toFixed(2)})
-        //   console.log(resultArray);
-        //   navigator.clipboard.writeText(resultArray);
-        //   }
-      }
-      
-    document.getElementById('reset').onclick = () => {
-      document.getElementById('resetPx').reset();
-      document.getElementById('component').innerHTML = "Set selection"
-      const idArray = [
+    const text = document.getElementById('textPx');
+    textResult = pxToRem(text.value);
+    document.getElementById('textResult').innerHTML = (textResult().toFixed(2)
+      || 0);
+
+    const lineHeight = document.getElementById('lineHeightPx');
+    lHResult = pxToRem(lineHeight.value);
+    document.getElementById('lineHeightResult').innerHTML = lHResult === "AUTO" ? "AUTO" : (lHResult().toFixed(2)
+      || 0);
+
+    const letterSpacing = document.getElementById('letterSpacingPx');
+    LSResult = pxToRem(letterSpacing.value);
+    document.getElementById('letterSpacingResult').innerHTML = (LSResult().toFixed(2)
+      || 0);
+
+    const width = document.getElementById('widthPx');
+    wResult = pxToRem(width.value);
+    document.getElementById('widthResult').innerHTML = (wResult().toFixed(2) || 0);
+
+    const height = document.getElementById('heightPx');
+    hResult = pxToRem(height.value);
+    document.getElementById('heightResult').innerHTML = (hResult().toFixed(2) || 0);
+
+    const radius = document.getElementById('radiusPx');
+    rResult = pxToRem(radius.value);
+    document.getElementById('radiusResult').innerHTML = (rResult().toFixed(2) || 0);
+
+    const stroke = document.getElementById('strokePx');
+    sResult = pxToRem(stroke.value);
+    document.getElementById('strokeResult').innerHTML = (sResult().toFixed(2) || 0);
+
+    const x = document.getElementById('xPx');
+    xResult = pxToRem(x.value);
+    document.getElementById('xResult').innerHTML = (xResult().toFixed(2) || 0);
+
+    const y = document.getElementById('yPx');
+    yResult = pxToRem(y.value);
+    document.getElementById('yResult').innerHTML = (yResult().toFixed(2) || 0);
+
+    const paddingT = document.getElementById('paddingTPx');
+    pTResult = pxToRem(paddingT.value);
+    document.getElementById('paddingTResult').innerHTML = (pTResult().toFixed(2) || 0);
+
+    const paddingB = document.getElementById('paddingBPx');
+    pBResult = pxToRem(paddingB.value);
+    document.getElementById('paddingBResult').innerHTML = (pBResult().toFixed(2) || 0);
+
+    const paddingL = document.getElementById('paddingLPx');
+    pLResult = pxToRem(paddingL.value);
+    document.getElementById('paddingLResult').innerHTML = (pLResult().toFixed(2) || 0);
+
+    const paddingR = document.getElementById('paddingRPx');
+    pRResult = pxToRem(paddingR.value);
+    document.getElementById('paddingRResult').innerHTML = (pRResult().toFixed(2) || 0);
+
+    const itemSpacing = document.getElementById('itemSpacingPx');
+    iSResult = pxToRem(itemSpacing.value);
+    document.getElementById('itemSpacingResult').innerHTML = (iSResult().toFixed(2) || 0);
+  }
+
+  document.getElementById('reset').onclick = () => {
+    document.getElementById('resetPx').reset();
+    document.getElementById('component').innerHTML = "Set selection"
+    const idArray = [
       'textResult',
       'lineHeightResult',
       'letterSpacingResult',
@@ -383,3 +458,87 @@
     return calculate;
   }
 </script>
+
+<style>
+  body {
+    background-color: var(--figma-color-bg);
+  }
+
+  .container-top {
+    background-color: var(--figma-color-bg);
+    border-bottom: 1px solid var(--figma-color-border);
+  }
+
+  .container-bottom {
+    background-color: var(--figma-color-bg);
+    border-top: 1px solid var(--figma-color-border);
+  }
+
+  button {
+    background-color: var(--figma-color-bg);
+    border: 1px solid var(--figma-color-border);
+    color: var(--figma-color-text);
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  button:hover {
+    background-color: var(--figma-color-bg-selected-hover);
+    border: 1px solid var(--figma-color-border-selected);
+  }
+
+  h3 {
+    color: var(--figma-color-text);
+  }
+
+  h4,
+  h5 {
+    color: var(--figma-color-text-secondary);
+  }
+
+  input {
+    border: 2px solid var(--figma-color-border);
+    background-color: var(--figma-color-bg);
+    color: var(--figma-color-text);
+  }
+
+  input:active {
+    border: 2px solid var(--figma-color-border-onsuccess);
+  }
+
+  input:focus {
+    border: 2px solid var(--figma-color-border-onsuccess);
+  }
+
+  select {
+    border: 2px solid var(--figma-color-border);
+    background-color: var(--figma-color-bg);
+    color: var(--figma-color-text);
+  }
+
+  select:active {
+    border: 2px solid var(--figma-color-border-onsuccess);
+  }
+
+  select:focus {
+    border: 2px solid var(--figma-color-border-onsuccess);
+  }
+
+  span {
+    color: var(--figma-color-text-success);
+  }
+
+  span.px {
+    color: var(--figma-color-text-secondary);
+  }
+
+  span.component {
+    margin-top: 0.5rem;
+    color: var(--figma-color-text-success);
+    font-size: 0.8rem;
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    background-color: var(--figma-color-bg-success), 0.5;
+    border: 1px solid var(--figma-color-border-onsuccess);
+  }
+</style>
