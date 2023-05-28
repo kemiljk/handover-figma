@@ -582,102 +582,101 @@
   //   // URL.revokeObjectURL(url);
   // }
 
+
   function createCSS() {
-    const css = {};
+    const css = [];
 
     const text = document.getElementById('textPx');
     const textResult = pxToRem(text.value);
     if (textResult() !== 0) {
-      css['font-size'] = textResult().toFixed(2) + 'rem';
+      css.push(`font-size: ${textResult().toFixed(2)}rem`);
     }
 
     const lineHeight = document.getElementById('lineHeightPx');
     const lHResult = pxToRem(lineHeight.value);
     if (lHResult() !== 0) {
-      css['line-height'] = lHResult === 'AUTO' ? 'AUTO' : lHResult().toFixed(2) + 'rem';
+      css.push(`line-height: ${lHResult === 'AUTO' ? 'AUTO' : lHResult().toFixed(2)}rem`);
     }
 
     const letterSpacing = document.getElementById('letterSpacingPx');
     const LSResult = pxToRem(letterSpacing.value);
     if (LSResult() !== 0) {
-      css['letter-spacing'] = LSResult().toFixed(2) + 'rem';
+      css.push(`letter-spacing: ${LSResult().toFixed(2)}rem`);
     }
 
     const width = document.getElementById('widthPx');
     const wResult = pxToRem(width.value);
     if (wResult() !== 0) {
-      css['width'] = wResult().toFixed(2) + 'rem';
+      css.push(`width: ${wResult().toFixed(2)}rem`);
     }
 
     const height = document.getElementById('heightPx');
     const hResult = pxToRem(height.value);
     if (hResult() !== 0) {
-      css['height'] = hResult().toFixed(2) + 'rem';
+      css.push(`height: ${hResult().toFixed(2)}rem`);
     }
 
     const radius = document.getElementById('radiusPx');
     const rResult = pxToRem(radius.value);
     if (rResult() !== 0) {
-      css['border-radius'] = rResult().toFixed(2) + 'rem';
+      css.push(`border-radius: ${rResult().toFixed(2)}rem`);
     }
 
     const stroke = document.getElementById('strokePx');
     const sResult = pxToRem(stroke.value);
     if (sResult() !== 0) {
-      css['border-width'] = sResult().toFixed(2) + 'rem';
+      css.push(`border-width: ${sResult().toFixed(2)}rem`);
     }
 
     const x = document.getElementById('xPx');
     const xResult = pxToRem(x.value);
     if (xResult() !== 0) {
-      css['transform'] = `translateX(${xResult().toFixed(2)}rem)`;
+      css.push(`left: ${xResult().toFixed(2)}rem`);
     }
 
     const y = document.getElementById('yPx');
     const yResult = pxToRem(y.value);
     if (yResult() !== 0) {
-      css['transform'] += ` translateY(${yResult().toFixed(2)}rem)`;
+      css.push(`top: ${yResult().toFixed(2)}rem`);
     }
 
     const paddingT = document.getElementById('paddingTPx');
     const pTResult = pxToRem(paddingT.value);
     if (pTResult() !== 0) {
-      css['padding-top'] = pTResult().toFixed(2) + 'rem';
+      css.push(`padding-top: ${pTResult().toFixed(2)}rem`);
     }
 
     const paddingB = document.getElementById('paddingBPx');
     const pBResult = pxToRem(paddingB.value);
     if (pBResult() !== 0) {
-      css['padding-bottom'] = pBResult().toFixed(2) + 'rem';
+      css.push(`padding-bottom: ${pBResult().toFixed(2)}rem`);
     }
 
     const paddingL = document.getElementById('paddingLPx');
     const pLResult = pxToRem(paddingL.value);
     if (pLResult() !== 0) {
-      css['padding-left'] = pLResult().toFixed(2) + 'rem';
+      css.push(`padding-left: ${pLResult().toFixed(2)}rem`);
     }
 
     const paddingR = document.getElementById('paddingRPx');
     const pRResult = pxToRem(paddingR.value);
     if (pRResult() !== 0) {
-      css['padding-right'] = pRResult().toFixed(2) + 'rem';
+      css.push(`padding-right: ${pRResult().toFixed(2)}rem`);
     }
 
     const itemSpacing = document.getElementById('itemSpacingPx');
     const iSResult = pxToRem(itemSpacing.value);
     if (iSResult() !== 0) {
-      css['grid-gap'] = iSResult().toFixed(2) + 'rem';
+      css.push(`gap: ${iSResult().toFixed(2)}rem`);
     }
 
-    let cssString = '';
-    for (const prop in css) {
-      cssString += `${prop}: ${css[prop]};\n`;
-    }
+    const cssString = css.join('; ');
 
     console.log(cssString);
-    const string = JSON.stringify(css, null, 2);
+
+    const string = JSON.stringify(cssString, null, 2);
     const tempInput = document.createElement('textarea');
-    tempInput.value = string;
+    tempInput.value = string.replace(/"/g, '');
     document.body.appendChild(tempInput);
     tempInput.select();
     document.execCommand('copy');
