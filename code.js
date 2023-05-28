@@ -1,4 +1,4 @@
-figma.showUI(__html__, { themeColors: true, width: 300, height: 600 });
+figma.showUI(__html__, { themeColors: true, width: 300, height: 500 });
 if (figma.currentPage.selection.length === 0) {
     figma.notify('Select an object to get the selection value.');
 }
