@@ -32,24 +32,22 @@
   <div class="flex mx-auto w-full items-center justify-between px-4 z-0 pt-24">
     <span class="component" id="component">EMPTY</span>
     <div class="flex justify-end w-max space-x-2">
-      <!-- <button id="json"
+      <button id="exportCSS"
         class="flex items-center export text-center text-xs py-2 px-4 w-fit rounded-lg focus:outline-none"
-        onclick="createJSON()">
+        onclick="exportCSS()">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" class="icon" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M15.0001 2.09998C15.4972 2.09998 15.9001 2.50292 15.9001 2.99998V16.8272L20.3638 12.3636C20.7152 12.0121 21.285 12.0121 21.6364 12.3636C21.988 12.7151 21.988 13.2849 21.6364 13.6364L15.6365 19.6364C15.285 19.9878 14.7152 19.9878 14.3637 19.6364L8.3637 13.6364C8.01222 13.2849 8.01222 12.7151 8.3637 12.3636C8.71518 12.0121 9.28502 12.0121 9.6365 12.3636L14.1001 16.8272V2.99998C14.1001 2.50292 14.503 2.09998 15.0001 2.09998ZM5 20C5.55228 20 6 20.4478 6 21V24C6 25.1078 6.8913 26 7.9927 26H22.0024C23.1058 26 24 25.1056 24 24V21C24 20.4478 24.4478 20 25 20C25.5522 20 26 20.4478 26 21V24C26 26.2082 24.2124 28 22.0024 28H7.9927C5.78038 28 4 26.206 4 24V21C4 20.4478 4.44772 20 5 20Z"
             fill="currentColor" />
-        </svg>
-        JSON</button> -->
-      <button id="css"
+        </svg>Export</button>
+      <button id="copyCSS"
         class="flex items-center export text-center text-xs py-2 px-4 w-fit rounded-lg focus:outline-none"
         onclick="createCSS()">
         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" class="icon" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M2 19.0001C2 20.657 3.34314 22.0002 5 22.0002H8V20.0002H5C4.44772 20.0002 4 19.5524 4 19.0001V5.00012C4 4.44784 4.44772 4.00012 5 4.00012H19C19.5523 4.00012 20 4.44784 20 5.00012V8.00004H11C9.34316 8.00004 8 9.34318 8 11V25C8 26.6568 9.34316 28 11 28H25C26.6568 28 28 26.6568 28 25V11C28 9.34318 26.6568 8.00004 25 8.00004H22V5.00012C22 3.34326 20.6568 2.00012 19 2.00012H5C3.34314 2.00012 2 3.34326 2 5.00012V19.0001ZM10 11C10 10.4478 10.4477 10 11 10H25C25.5522 10 26 10.4478 26 11V25C26 25.5524 25.5522 26 25 26H11C10.4477 26 10 25.5524 10 25V11Z"
             fill="currentColor" />
-        </svg>
-        CSS</button>
+        </svg>Copy</button>
     </div>
   </div>
   <div class="overflow-y-auto pt-4">
@@ -682,16 +680,115 @@
     document.execCommand('copy');
     document.body.removeChild(tempInput);
 
+    const originalText = document.getElementById('copyCSS').innerHTML;
+    document.getElementById('copyCSS').innerText = 'Copied!';
+
+    setTimeout(() => {
+      document.getElementById('copyCSS').innerHTML = originalText;
+    }, 2000)
+  }
+
+  function exportCSS() {
+    const css = [];
+
+    const text = document.getElementById('textPx');
+    const textResult = pxToRem(text.value);
+    if (textResult() !== 0) {
+      css.push(`font-size: ${textResult().toFixed(2)}rem`);
+    }
+
+    const lineHeight = document.getElementById('lineHeightPx');
+    const lHResult = pxToRem(lineHeight.value);
+    if (lHResult() !== 0) {
+      css.push(`line-height: ${lHResult === 'AUTO' ? 'AUTO' : lHResult().toFixed(2)}rem`);
+    }
+
+    const letterSpacing = document.getElementById('letterSpacingPx');
+    const LSResult = pxToRem(letterSpacing.value);
+    if (LSResult() !== 0) {
+      css.push(`letter-spacing: ${LSResult().toFixed(2)}rem`);
+    }
+
+    const width = document.getElementById('widthPx');
+    const wResult = pxToRem(width.value);
+    if (wResult() !== 0) {
+      css.push(`width: ${wResult().toFixed(2)}rem`);
+    }
+
+    const height = document.getElementById('heightPx');
+    const hResult = pxToRem(height.value);
+    if (hResult() !== 0) {
+      css.push(`height: ${hResult().toFixed(2)}rem`);
+    }
+
+    const radius = document.getElementById('radiusPx');
+    const rResult = pxToRem(radius.value);
+    if (rResult() !== 0) {
+      css.push(`border-radius: ${rResult().toFixed(2)}rem`);
+    }
+
+    const stroke = document.getElementById('strokePx');
+    const sResult = pxToRem(stroke.value);
+    if (sResult() !== 0) {
+      css.push(`border-width: ${sResult().toFixed(2)}rem`);
+    }
+
+    const x = document.getElementById('xPx');
+    const xResult = pxToRem(x.value);
+    if (xResult() !== 0) {
+      css.push(`left: ${xResult().toFixed(2)}rem`);
+    }
+
+    const y = document.getElementById('yPx');
+    const yResult = pxToRem(y.value);
+    if (yResult() !== 0) {
+      css.push(`top: ${yResult().toFixed(2)}rem`);
+    }
+
+    const paddingT = document.getElementById('paddingTPx');
+    const pTResult = pxToRem(paddingT.value);
+    if (pTResult() !== 0) {
+      css.push(`padding-top: ${pTResult().toFixed(2)}rem`);
+    }
+
+    const paddingB = document.getElementById('paddingBPx');
+    const pBResult = pxToRem(paddingB.value);
+    if (pBResult() !== 0) {
+      css.push(`padding-bottom: ${pBResult().toFixed(2)}rem`);
+    }
+
+    const paddingL = document.getElementById('paddingLPx');
+    const pLResult = pxToRem(paddingL.value);
+    if (pLResult() !== 0) {
+      css.push(`padding-left: ${pLResult().toFixed(2)}rem`);
+    }
+
+    const paddingR = document.getElementById('paddingRPx');
+    const pRResult = pxToRem(paddingR.value);
+    if (pRResult() !== 0) {
+      css.push(`padding-right: ${pRResult().toFixed(2)}rem`);
+    }
+
+    const itemSpacing = document.getElementById('itemSpacingPx');
+    const iSResult = pxToRem(itemSpacing.value);
+    if (iSResult() !== 0) {
+      css.push(`gap: ${iSResult().toFixed(2)}rem`);
+    }
+
+    const cssString = css.join('; ');
+
+    console.log(cssString);
+
     // Create a blob from the CSS string and download it as a file
-    // const blob = new Blob([cssString], { type: 'text/css' });
-    // const url = URL.createObjectURL(blob);
-    // const a = document.createElement('a');
-    // a.href = url;
-    // a.download = 'handover-export.css';
-    // document.body.appendChild(a);
-    // a.click();
-    // document.body.removeChild(a);
-    // URL.revokeObjectURL(url);
+    const blob = new Blob([cssString.replace(/"/g, '')], { type: 'text/css' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'handover-export.css';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   function pxToRem(px) {
